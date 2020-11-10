@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>App</title> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+   integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+  <!-- Custom styles for this template -->
+  <link type="text/css" rel="stylesheet" href="{{url_for('static',filename='css/simple_sidebar.css') }}">
+  {% block head %}		
+  	<!-- any additional css   -->
+	{% endblock %}
+</head>
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+  
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Logo </div>
+        <div class="list-group list-group-flush">
+          <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light">Rooms</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light">Staff</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light">Subjects</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light">Class</a>
+          <!-- <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
+        </div>
+      </div>
+      <!-- /#sidebar-wrapper -->
+  
+      
+      <div id="page-content-wrapper">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+          <button class="btn btn-primary" id="menu-toggle">Menu</button>
+  
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">My Account</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Log Out</a>
+              </li>
+            </ul>
+          </div>
+
+        </nav>
+        <!-- /#topbar-wrapper -->
+
+        <!--page content-->
+        <div class="container-fluid">
+          
+            {% block content%}{% endblock %}
+        </div>
+      <!-- /#page-content-wrapper -->
+  
+    </div>
+    <!-- /#wrapper -->
+  
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/jquery/jquery.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+    <!-- Menu Toggle Script -->
+    <script>
+      $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
+    </script>
+  
+  </body>
+  
+  </html>
+  

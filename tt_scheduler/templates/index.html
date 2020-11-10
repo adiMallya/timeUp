@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link type="text/css"  rel="stylesheet" 
+    href="{{ url_for('static', filename='css/dashboard-cards.css') }}"/>
+{% endblock %}
+{%block content%}
+      <h1 class="mt-4">Timetable</h1>
+      <div class="row" style="padding-top: 25px;">
+          <div class="col-md-4 col-xl-3">
+              <div class="card bg-c-blue order-card">
+                  <div class="card-block">
+                      <h4 class="m-b-20">Rooms <i class="fas fa-door-closed"></i></h4>
+                      <h2 class="text-center"><span>100</span></h2>
+                      <p class="m-b-0">Occupied<span class="f-right"> 91</span></p>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-4 col-xl-3">
+              <div class="card bg-c-green order-card">
+                  <div class="card-block">
+                      <h4 class="m-b-20">Staff <i class="fas fa-user-friends"></i></h4>
+                      <h2 class="text-center"><span>55</span></h2>
+                      <p class="m-b-0">Teaching<span class=""> 35</span></p>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-4 col-xl-3">
+              <div class="card bg-c-yellow order-card">
+                  <div class="card-block">
+                      <h4 class="m-b-20">Subjects <i class="fas fa-book-open"></i></h4>
+                      <h2 class="text-center"><span>50</span></h2>
+                      <p class="m-b-0">Electives<span class=""> 20</span></p>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="col-md-4 col-xl-3">
+              <div class="card bg-c-pink order-card">
+                  <div class="card-block">
+                      <h4 class="m-b-20">Classes <i class="fas fa-chalkboard"></i></h4>
+                      <h2 class="text-center"><span>24</span></h2>
+                      <p class="m-b-0">Semesters<span class=""> 8</span></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="btn-holder col-md-15 text-center"> 
+        <button type="button" class="btn btn-secondary btn-lg">
+        Generate <i class="fas fa-calendar-alt"></i></button>
+      </div>
+      </div>
+{% endblock content%}
