@@ -1,6 +1,6 @@
 # Timetable Scheduler [WIP]
 
-## Setting up a development environment
+## Setting up 
 
 We assume that you have `git` and `pip` installed ([ref](https://packaging.python.org/guides/installing-using-linux-tools/#arch-linux) )
 
@@ -13,13 +13,14 @@ We assume that you have `git` and `pip` installed ([ref](https://packaging.pytho
     pip install -r requirements.txt
 ```
 
+
 ## Running the app
 
 ```
     export FLASK_APP=run.py
     flask run
 ```
-Alternatively you can use python -m flask:
+Alternatively you can use `python -m flask`:
 
 ```
     export FLASK_APP=run.py
