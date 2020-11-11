@@ -20,10 +20,11 @@ We assume that you have `git` and `pip` installed ([ref](https://packaging.pytho
     export FLASK_APP=run.py
     flask run
 ```
-Alternatively you can use `python -m flask`:
+Alternatively you can use `set`, if your'e on Windows CMD:
 
 ```
-    export FLASK_APP=run.py
-    python -m flask run
+    set FLASK_APP=run.py
+    flask run
 ```
 Point your web browser to http://localhost:5000/
+
