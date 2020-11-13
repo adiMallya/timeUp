@@ -23,18 +23,17 @@
 </head>
 
 <body>
-
     <div class="d-flex" id="wrapper">
   
       <!-- Sidebar -->
       <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Logo </div>
         <div class="list-group list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Rooms</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Staff</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Subjects</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Class</a>
+          <a href="{{url_for('home')}}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+          <a href="{{url_for('room')}}" class="list-group-item list-group-item-action bg-light">Rooms</a>
+          <a href="{{url_for('emp')}}" class="list-group-item list-group-item-action bg-light">Staff</a>
+          <a href="{{url_for('subj')}}" class="list-group-item list-group-item-action bg-light">Subjects</a>
+          <a href="{{url_for('section')}}" class="list-group-item list-group-item-action bg-light">Class</a>
           <!-- <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
         </div>
       </div>
@@ -53,10 +52,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
               <li class="nav-item active">
-                <a class="nav-link" href="#">My Account</a>
+                <a class="nav-link" href="{{url_for('account')}}">My Account</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Log Out</a>
+                <a class="nav-link" href="{{url_for('logout')}}">Log Out</a>
               </li>
             </ul>
           </div>
@@ -85,8 +84,7 @@
         $("#wrapper").toggleClass("toggled");
       });
     </script>
+</body>
   
-  </body>
-  
-  </html>
+</html>
   

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>App</title> 
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="{{url_for('static',filename='css/landing.css') }}">
+  
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row no-gutter">
+          <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image">
+              <!-- <h2 class="bg-title"></h2> -->
+          </div>
+          <div class="col-md-8 col-lg-6">
+            <div class="login d-flex align-items-center py-5">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-9 col-lg-8 mx-auto">
+                    <h3 class="login-heading mb-4">Welcome back!</h3>
+                    {% with messages =  get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category}}">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {%  endif %}
+                    {% endwith %}
+                    <form method="POST" action="">
+                      {{form.hidden_tag()}}
+                      <div class="form-label-group">
+                        {{ form.email.label(class="") }}
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-control is-invalid")}}
+                            <div class="invalid-form">
+                                {% for e in form.email.errors %}
+                                    <span>{{e}}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %} 
+                        {{ form.email(class="form-control") }}
+                        {% endif %} 
+                      </div>
+      
+                      <div class="form-label-group">
+                        {{ form.password.label(class="") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control is-invalid")}}
+                            <div class="invalid-form">
+                                {% for e in form.password.errors %}
+                                    <span>{{e}}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %} 
+                        {{ form.password(class="form-control") }}
+                        {% endif %}  
+                      </div>
+      
+                      <div class="custom-control custom-checkbox mb-3">
+                        {{ form.remember(class="custom-control-input")}}
+                        {{ form.remember.label(class="custom-control-label")}}
+                      </div>
+
+                      <!-- submit button -->
+                      {{ form.submit(class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2") }}
+                  
+                      <div class="text-center">
+                        <a class="small" href="#">Forgot password?</a>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</body>
+
+</html>
