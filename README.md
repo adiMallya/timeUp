@@ -20,7 +20,7 @@ We assume that you have `git` and `pip` installed ([ref](https://packaging.pytho
     export FLASK_APP=run.py
     flask run
 ```
-On Windows, you coul use CMD or Anaconda Shell :
+On Windows, you could use CMD or Anaconda Shell :
 
 ```
     set FLASK_APP=run.py
