@@ -5,5 +5,89 @@
     href="{{ url_for('static', filename='css/style.css') }}"/>
 {% endblock %}
 {%block content%}
-
+    <div class="content-section">
+        <div class="outer">
+            <div class="middle">
+                <div class="inner">
+                    <!-- <br/>
+                    
+                    <br/> -->
+                    <h1 style="text-align: center;">Staff</h1>
+                    {% if employees %}
+                        <hr class="intro-divider">
+                        <div class="center table-responsive-lg">
+                            <table class="table table-hover table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Name </th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone No.</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Workload</th>
+                                        <th scope="col">Subjects</th>
+                                        <th scope="col">Classes</th>
+                                        <th scope="col">Assign </th>
+                                        <th scope="col">Delete </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for e in employees %}
+                                        {% if e.is_admin %}
+                                            <tr scope="row" class="table-info">
+                                                <td> Admin<i class="fa fa-key"></i></td>
+                                                <td> {{e.email}}</td> 
+                                                <td> N/A</td>
+                                                <td> N/A</td>
+                                                <td> N/A</td>
+                                                <td> N/A</td>
+                                                <td> N/A</td>
+                                                <td> N/A</td>
+                                                <td> N/A</td>
+                                            </tr>
+                                        {% else %}
+                                            <tr scope="row">
+                                                <td> {{e.f_name}} {{e.l_name}}</td>
+                                                <td> {{e.email}}</td>
+                                                <td> {{e.ph_no}}</td>
+                                                <td> {{e.type}}</td>
+                                                <td> {{e.workload}}</td>
+                                                <td> 
+                                                    {% if e.subjects %}
+                                                        {% for s in e.subjects %}
+                                                            <li>{{s.sname}}</li>
+                                                        {% endfor %}
+                                                    {% else %}    
+                                                        -
+                                                    {% endif %}
+                                                </td>
+                                                <td> 
+                                                    {% if e.classes %}
+                                                        {% for c in e.classes %}
+                                                            <li>{{c.cid}}</li>
+                                                        {% endfor %}
+                                                    {% else %}    
+                                                        -
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <a href="#">
+                                                        <i class="fa fa-plus" style="color: black;"></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#">
+                                                        <i class="fa fa-trash" style="color: black;"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor%} 
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content%}
