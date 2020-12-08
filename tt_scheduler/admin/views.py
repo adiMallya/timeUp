@@ -2,7 +2,8 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required 
 
 from . import admin
-
+from .. import db
+from ..models import Employee
 
 
 
@@ -28,7 +29,9 @@ def dashboard():
 @login_required
 def list_employees():
     check_admin()
-    return render_template('admin/employees/employees.html')
+
+    employees = Employee.query.order_by(Employee.f_name).all()
+    return render_template('admin/employees/employees.html',employees=employees)
 
 
 #Room views
