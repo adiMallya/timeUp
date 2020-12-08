@@ -56,3 +56,12 @@ def list_subjects():
 def list_classes():
     check_admin()
     return render_template('admin/classes/classes.html')
+
+
+#Profile views
+
+@admin.route('/account', methods = ['GET','POST'])
+@login_required
+def show_profile():
+    check_admin()
+    return render_template('admin/account.html')
