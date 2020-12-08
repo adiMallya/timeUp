@@ -13,9 +13,46 @@ def check_admin():
     if not current_user.is_admin:
         abort(403) 
 
+#Dashboard views
 
-@admin.route('/admin/dashboard')
+@admin.route('/dashboard')
 @login_required
 def dashboard():
     check_admin() 
     return render_template('admin/dashboard.html')
+
+
+#Employee views
+
+@admin.route('/employees', methods = ['GET','POST'])
+@login_required
+def list_employees():
+    check_admin()
+    return render_template('admin/employees/employees.html')
+
+
+#Room views
+
+@admin.route('/rooms', methods = ['GET','POST'])
+@login_required
+def list_rooms():
+    check_admin()
+    return render_template('admin/rooms/rooms.html')
+
+
+#Subject views
+
+@admin.route('/subjects', methods = ['GET','POST'])
+@login_required
+def list_subjects():
+    check_admin()
+    return render_template('admin/subjects/subjects.html')
+
+
+#Class views
+
+@admin.route('/classes', methods = ['GET','POST'])
+@login_required
+def list_classes():
+    check_admin()
+    return render_template('admin/classes/classes.html')

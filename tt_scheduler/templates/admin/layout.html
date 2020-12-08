@@ -9,6 +9,8 @@
 
   <title>App</title> 
 
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  
   <!-- Bootstrap core CSS -->
   <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -29,10 +31,10 @@
         <div class="sidebar-heading">Logo </div>
         <div class="list-group list-group-flush">
           <a href="{{url_for('admin.dashboard')}}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Rooms</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Staff</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Subjects</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Class</a>
+          <a href="{{url_for('admin.list_rooms')}}" class="list-group-item list-group-item-action bg-light">Rooms</a>
+          <a href="{{url_for('admin.list_employees')}}" class="list-group-item list-group-item-action bg-light">Staff</a>
+          <a href="{{url_for('admin.list_subjects')}}" class="list-group-item list-group-item-action bg-light">Subjects</a>
+          <a href="{{url_for('admin.list_classes')}}" class="list-group-item list-group-item-action bg-light">Class</a>
           <!-- <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> -->
         </div>
       </div>
