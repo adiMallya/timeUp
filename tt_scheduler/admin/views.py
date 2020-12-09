@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 
 from . import admin
 from .. import db
-from ..models import Employee
+from ..models import Employee, Subject, Class
 
 
 
@@ -49,7 +49,9 @@ def list_rooms():
 @login_required
 def list_subjects():
     check_admin()
-    return render_template('admin/subjects/subjects.html')
+
+    subjects = Subject.query.order_by(Subject.type).all()
+    return render_template('admin/subjects/subjects.html', subjects=subjects)
 
 
 #Class views
@@ -58,7 +60,9 @@ def list_subjects():
 @login_required
 def list_classes():
     check_admin()
-    return render_template('admin/classes/classes.html')
+
+    classes = Class.query.order_by(Class.cid).all()
+    return render_template('admin/classes/classes.html', classes=classes)
 
 
 #Profile views
