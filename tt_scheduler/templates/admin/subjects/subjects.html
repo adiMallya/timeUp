@@ -37,12 +37,12 @@
                                         <td> {{ s.learn_hrs }}</td>
                                         <td> {{ s.credits }}</td>
                                         <td>
-                                            <a href="#">
+                                            <a href="{{ url_for('admin.edit_subject', id=s.sid) }}">
                                             <i class="fa fa-edit" style="color:black;"></i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="#">
+                                            <a href="{{ url_for('admin.delete_subject', id=s.sid) }}">
                                             <i class="fa fa-trash" style="color:black;"></i>
                                             </a>
                                         </td>
