@@ -87,6 +87,48 @@ def add_subject():
     return render_template('admin/subjects/subject.html', action='Add',
                             add_subject=add_subject, form=form)
 
+
+@admin.route('/subjects/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_subject(id):
+   
+    check_admin()
+
+    add_subject = False
+
+    subject = Subject.query.get_or_404(id)
+    form = SubjectForm(obj=subject)
+    if form.validate_on_submit():
+        subject.sname = form.name.data
+        subject.teach_hrs = form.teaching_hrs.data
+        subject.learn_hrs = form.learning_hrs.data
+        subject.credits = form.creds.data
+        db.session.commit()
+        flash('You have successfully edited the subject.','success')
+
+        return redirect(url_for('admin.list_subjects'))
+
+    form.name.data = subject.sname
+    form.teaching_hrs.data = subject.teach_hrs 
+    form.learning_hrs.data = subject.learn_hrs
+    form.creds.data = subject.credits
+    return render_template('admin/subjects/subject.html', action="Edit",
+                           add_subject=add_subject, form=form,
+                           subject=subject)
+
+
+@admin.route('/subjects/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_subject(id):
+    
+    check_admin()
+
+    subject = Subject.query.get_or_404(id)
+    db.session.delete(subject)
+    db.session.commit()
+    flash('You have successfully deleted the subject.')
+
+    return redirect(url_for('admin.list_subjects'))
 # ------------------------------------------------------------------------------------------------#
 #Class views
 
