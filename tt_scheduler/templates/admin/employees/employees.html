@@ -24,8 +24,7 @@
                                         <th scope="col">Phone No.</th>
                                         <th scope="col">Type</th>
                                         <th scope="col">Workload</th>
-                                        <th scope="col">Subjects</th>
-                                        <th scope="col">Classes</th>
+                                        <th scope="col">Subjects (Class)</th>
                                         <th scope="col">Assign </th>
                                         <th scope="col">Delete </th>
                                     </tr>
@@ -42,7 +41,6 @@
                                                 <td> N/A</td>
                                                 <td> N/A</td>
                                                 <td> N/A</td>
-                                                <td> N/A</td>
                                             </tr>
                                         {% else %}
                                             <tr scope="row">
@@ -52,18 +50,9 @@
                                                 <td> {{e.type}}</td>
                                                 <td> {{e.workload}}</td>
                                                 <td> 
-                                                    {% if e.subjects %}
-                                                        {% for s in e.subjects %}
-                                                            <li style="list-style-type: none;">{{s.sname}}</li>
-                                                        {% endfor %}
-                                                    {% else %}    
-                                                        
-                                                    {% endif %}
-                                                </td>
-                                                <td> 
-                                                    {% if e.classes %}
-                                                        {% for c in e.classes %}
-                                                            <li style="list-style-type: none;">{{c.cid}}</li>
+                                                    {% if e.subjects and e.classes %}
+                                                        {% for s,c in zip(e.subjects, e.classes)%}
+                                                            <li style="list-style-type: none;">{{s.sname}} ({{c.cid}})</li>
                                                         {% endfor %}
                                                     {% else %}    
                                                         
