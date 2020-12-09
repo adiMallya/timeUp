@@ -2,7 +2,7 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required 
 
 from . import admin
-from .forms import SubjectForm, ClassForm
+from .forms import SubjectForm, ClassForm, ClassAssignForm
 from .. import db
 from ..models import Employee, Subject, Class
 
@@ -167,6 +167,32 @@ def add_class():
     return render_template('admin/classes/class.html', action='Add',
                             add_class=add_class, assign_subject=assign_subject,
                             form=form)
+
+
+@admin.route('/classes/assign/<id>', methods=['GET', 'POST'])
+@login_required
+def assign_class(id):
+    
+    check_admin()
+
+    assign_subject = True
+
+    classes = Class.query.get_or_404(id)
+
+    form = ClassAssignForm(obj=classes)
+    if form.validate_on_submit():
+        for sid in form.subjects.data :
+            classes.subjects.append(Subject.query.get(sid))
+
+        db.session.add(classes)
+        db.session.commit()
+        flash('You have successfully assigned a subject to the class')
+
+        return redirect(url_for('admin.list_classes'))
+    
+    return render_template('admin/classes/class.html',
+                            classes=classes,assign_subject=assign_subject, form=form)
+
 
 
 @admin.route('/classes/edit/<id>', methods=['GET', 'POST'])
