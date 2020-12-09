@@ -2,7 +2,7 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required 
 
 from . import admin
-from .forms import SubjectForm, ClassForm, ClassAssignForm
+from .forms import SubjectForm, ClassForm, ClassAssignForm, EmployeeAssignForm
 from .. import db
 from ..models import Employee, Subject, Class
 
@@ -36,6 +36,33 @@ def list_employees():
     return render_template('admin/employees/employees.html',employees=employees)
 
 
+@admin.route('/employees/assign/<int:id>', methods=['GET', 'POST'])
+@login_required
+def assign_employee(id):
+    
+    check_admin()
+
+    employee = Employee.query.get_or_404(id)
+
+    if employee.is_admin:
+        abort(403)
+
+    form = EmployeeAssignForm(obj=employee)
+    if form.validate_on_submit():
+        for sid in form.subjects.data :
+            employee.subjects.append(Subject.query.get(sid))
+
+        for cid in form.classes.data:  
+            employee.classes.append(Class.query.get(cid))
+
+        db.session.add(employee)
+        db.session.commit()
+        flash('You have successfully assigned a subject and class')
+
+        return redirect(url_for('admin.list_employees'))
+    
+    return render_template('admin/employees/employee.html',
+                            employee=employee, form=form)
 # ------------------------------------------------------------------------------------------------#
 #Room views
 
