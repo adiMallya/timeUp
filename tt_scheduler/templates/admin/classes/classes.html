@@ -5,5 +5,74 @@
     href="{{ url_for('static', filename='css/style.css') }}"/>
 {% endblock %}
 {%block content%}
-
+    <div class="content-section">
+        <div class="outer">
+            <div class="middle"> 
+                <div class="inner">
+                    <!-- <br/>
+                    
+                    <br/> -->
+                    <h1 style="text-align: center;">Classes</h1>
+                    {% if classes %}
+                        <hr class="intro-divider">
+                        <div class="center table-responsive-lg">
+                            <table class="table table-hover table-bordere">
+                                <thead class="thead-dark">
+                                    <tr>
+                                    <th scope="col"> Class </th>
+                                    <th scope="col"> Strength </th>
+                                    <th scope="col">Subjects </th>
+                                    <th scope="col">Assign </th>
+                                    <th scope="col"> Edit </th>
+                                    <th scope="col"> Delete </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in classes %}
+                                    <tr>
+                                        <td> {{ c.cid }}</td>
+                                        <td> {{ c.strength }}</td>
+                                        <td> 
+                                            {% if c.subjects %}
+                                                {% for s in c.subjects %}
+                                                    <li>{{s.sname}}</li>
+                                                {% endfor %}
+                                            {% else %}    
+                                                -
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                                <i class="fa fa-plus" style="color: black;"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                            <i class="fa fa-edit" style="color:black;"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                            <i class="fa fa-trash" style="color:black;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>   
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div style="text-align: center">
+                            <h3> No classes have been added. </h3>
+                            <hr class="intro-divider">
+                    {% endif %}
+                        <a href="#" class="btn btn-default btn-lg">
+                            <i class="fa fa-plus"></i>
+                            Add Class
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content%}
