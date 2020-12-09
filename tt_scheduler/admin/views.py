@@ -2,7 +2,7 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required 
 
 from . import admin
-from .forms import SubjectForm
+from .forms import SubjectForm, ClassForm
 from .. import db
 from ..models import Employee, Subject, Class
 
@@ -141,6 +141,73 @@ def list_classes():
     return render_template('admin/classes/classes.html', classes=classes)
 
 
+@admin.route('/classes/add', methods = ['GET','POST'])
+@login_required
+def add_class():
+
+    check_admin()
+
+    add_class = True
+    assign_subject = False
+
+    form = ClassForm()
+    if form.validate_on_submit():
+        classs = Class(   cid=form.sem_sec.data,
+                          strength=form.strength.data)
+
+        try:
+            db.session.add(classs)
+            db.session.commit()
+            flash('You have successfully added a new class.','success')
+        except:
+            flash('Error: class already exists.')
+
+        return redirect(url_for('admin.list_classes'))
+
+    return render_template('admin/classes/class.html', action='Add',
+                            add_class=add_class, assign_subject=assign_subject,
+                            form=form)
+
+
+@admin.route('/classes/edit/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_class(id):
+   
+    check_admin()
+
+    add_class = False
+    assign_subject = False
+
+    classes = Class.query.get_or_404(id)
+    form = ClassForm(obj=classes)
+    if form.validate_on_submit():
+        classes.cid = form.sem_sec.data
+        classes.strength = form.strength.data
+        db.session.commit()
+        flash('You have successfully edited the class.','success')
+
+        return redirect(url_for('admin.list_classes'))
+
+    form.sem_sec.data = classes.cid
+    form.strength.data = classes.strength 
+    return render_template('admin/classes/class.html', action="Edit",
+                           add_class=add_class, assign_subject=assign_subject,
+                           form=form,
+                           classes=classes)
+
+
+@admin.route('/classes/delete/<id>', methods=['GET', 'POST'])
+@login_required
+def delete_class(id):
+    
+    check_admin()
+
+    classes = Class.query.get_or_404(id)
+    db.session.delete(classes)
+    db.session.commit()
+    flash('You have successfully deleted the class.')
+
+    return redirect(url_for('admin.list_classes'))
 # ------------------------------------------------------------------------------------------------#
 #Profile views
 
