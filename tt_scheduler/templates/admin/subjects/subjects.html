@@ -5,5 +5,64 @@
     href="{{ url_for('static', filename='css/style.css') }}"/>
 {% endblock %}
 {%block content%}
-
+    <div class="content-section">
+        <div class="outer">
+            <div class="middle"> 
+                <div class="inner">
+                    <!-- <br/>
+                   
+                    <br/> -->
+                    <h1 style="text-align: center;">Subjects</h1>
+                    {% if subjects %}
+                        <hr class="intro-divider">
+                        <div class="center table-responsive-lg">
+                            <table class="table table-hover table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                    <th scope="col"> Name </th>
+                                    <th scope="col"> Type </th>
+                                    <th scope="col"> Teaching Hours </th>
+                                    <th scope="col"> Learning Hours </th>
+                                    <th scope="col"> Credits </th>
+                                    <th scope="col"> Edit </th>
+                                    <th scope="col"> Delete </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for s in subjects %}
+                                    <tr>
+                                        <td> {{ s.sname }}</td>
+                                        <td> {{ s.type }}</td>
+                                        <td> {{ s.teach_hrs }}</td>
+                                        <td> {{ s.learn_hrs }}</td>
+                                        <td> {{ s.credits }}</td>
+                                        <td>
+                                            <a href="#">
+                                            <i class="fa fa-edit" style="color:black;"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                            <i class="fa fa-trash" style="color:black;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>   
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div style="text-align: center">
+                            <h3> No subjects have been added. </h3>
+                            <hr class="intro-divider">
+                    {% endif %}
+                        <a href="#" class="btn btn-default btn-lg">
+                            <i class="fa fa-plus"></i>
+                            Add Subject
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content%}
