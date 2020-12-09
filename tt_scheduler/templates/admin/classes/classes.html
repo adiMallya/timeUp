@@ -29,20 +29,20 @@
                                 </thead>
                                 <tbody>
                                 {% for c in classes %}
-                                    <tr>
+                                    <tr scope="row">
                                         <td> {{ c.cid }}</td>
                                         <td> {{ c.strength }}</td>
                                         <td> 
                                             {% if c.subjects %}
                                                 {% for s in c.subjects %}
-                                                    <li>{{s.sname}}</li>
+                                                    <li style="list-style-type: none;">{{s.sname}}</li>
                                                 {% endfor %}
                                             {% else %}    
                                                 -
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <a href="#">
+                                            <a href="{{ url_for('admin.assign_class', id=c.cid)}}">
                                                 <i class="fa fa-plus" style="color: black;"></i>
                                             </a>
                                         </td>
