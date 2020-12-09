@@ -33,7 +33,7 @@ def list_employees():
     check_admin()
 
     employees = Employee.query.order_by(Employee.f_name).all()
-    return render_template('admin/employees/employees.html',employees=employees)
+    return render_template('admin/employees/employees.html',employees=employees, zip=zip)
 
 
 @admin.route('/employees/assign/<int:id>', methods=['GET', 'POST'])
