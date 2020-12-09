@@ -54,23 +54,23 @@
                                                 <td> 
                                                     {% if e.subjects %}
                                                         {% for s in e.subjects %}
-                                                            <li>{{s.sname}}</li>
+                                                            <li style="list-style-type: none;">{{s.sname}}</li>
                                                         {% endfor %}
                                                     {% else %}    
-                                                        -
+                                                        
                                                     {% endif %}
                                                 </td>
                                                 <td> 
                                                     {% if e.classes %}
                                                         {% for c in e.classes %}
-                                                            <li>{{c.cid}}</li>
+                                                            <li style="list-style-type: none;">{{c.cid}}</li>
                                                         {% endfor %}
                                                     {% else %}    
-                                                        -
+                                                        
                                                     {% endif %}
                                                 </td>
                                                 <td>
-                                                    <a href="#">
+                                                    <a href="{{ url_for('admin.assign_employee', id=e.eid) }}">
                                                         <i class="fa fa-plus" style="color: black;"></i>
                                                     </a>
                                                 </td>
