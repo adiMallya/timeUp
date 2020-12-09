@@ -2,6 +2,7 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required 
 
 from . import admin
+from .forms import SubjectForm
 from .. import db
 from ..models import Employee, Subject, Class
 
@@ -23,6 +24,7 @@ def dashboard():
     return render_template('admin/dashboard.html')
 
 
+# ------------------------------------------------------------------------------------------------#
 #Employee views
 
 @admin.route('/employees', methods = ['GET','POST'])
@@ -34,6 +36,7 @@ def list_employees():
     return render_template('admin/employees/employees.html',employees=employees)
 
 
+# ------------------------------------------------------------------------------------------------#
 #Room views
 
 @admin.route('/rooms', methods = ['GET','POST'])
@@ -43,6 +46,7 @@ def list_rooms():
     return render_template('admin/rooms/rooms.html')
 
 
+# ------------------------------------------------------------------------------------------------#
 #Subject views
 
 @admin.route('/subjects', methods = ['GET','POST'])
@@ -54,6 +58,36 @@ def list_subjects():
     return render_template('admin/subjects/subjects.html', subjects=subjects)
 
 
+@admin.route('/subjects/add', methods = ['GET','POST'])
+@login_required
+def add_subject():
+
+    check_admin()
+
+    add_subject = True
+
+    form = SubjectForm()
+    if form.validate_on_submit():
+        subject = Subject(sname=form.name.data,
+                          type=form.type.data,
+                          teach_hrs=form.teaching_hrs.data,
+                          learn_hrs=form.learning_hrs.data,
+                          credits=form.creds.data)
+
+        try:
+
+            db.session.add(subject)
+            db.session.commit()
+            flash('You have successfully added a new subject.','success')
+        except:
+            flash('Error: subject already exists.')
+
+        return redirect(url_for('admin.list_subjects'))
+
+    return render_template('admin/subjects/subject.html', action='Add',
+                            add_subject=add_subject, form=form)
+
+# ------------------------------------------------------------------------------------------------#
 #Class views
 
 @admin.route('/classes', methods = ['GET','POST'])
@@ -65,6 +99,7 @@ def list_classes():
     return render_template('admin/classes/classes.html', classes=classes)
 
 
+# ------------------------------------------------------------------------------------------------#
 #Profile views
 
 @admin.route('/account', methods = ['GET','POST'])
