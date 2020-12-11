@@ -20,8 +20,8 @@
               <div class="card bg-c-green order-card">
                   <div class="card-block">
                       <h4 class="m-b-20">Staff <i class="fas fa-user-friends"></i></h4>
-                      <h2 class="text-center"><span>55</span></h2>
-                      <p class="m-b-0">Teaching<span class=""> 35</span></p>
+                      <h2 class="text-center"><span>{{employees.count()}}</span></h2>
+                      <p class="m-b-0">Teaching <span class="">{{employees.filter_by(type='T').count()}}</span></p>
                   </div>
               </div>
           </div>
@@ -30,8 +30,8 @@
               <div class="card bg-c-yellow order-card">
                   <div class="card-block">
                       <h4 class="m-b-20">Subjects <i class="fas fa-book-open"></i></h4>
-                      <h2 class="text-center"><span>50</span></h2>
-                      <p class="m-b-0">Electives<span class=""> 20</span></p>
+                      <h2 class="text-center"><span>{{subjects.count()}}</span></h2>
+                      <p class="m-b-0">Electives <span class="">{{subjects.filter_by(type='E').count()}} </span></p>
                   </div>
               </div>
           </div>
@@ -40,7 +40,7 @@
               <div class="card bg-c-pink order-card">
                   <div class="card-block">
                       <h4 class="m-b-20">Classes <i class="fas fa-chalkboard"></i></h4>
-                      <h2 class="text-center"><span>24</span></h2>
+                      <h2 class="text-center"><span>{{classes.count()}}</span></h2>
                       <p class="m-b-0">Semesters<span class=""> 8</span></p>
                   </div>
               </div>
