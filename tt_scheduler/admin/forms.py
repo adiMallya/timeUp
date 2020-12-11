@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, IntegerField, SelectField
+from wtforms import StringField, SubmitField, IntegerField, SelectField, BooleanField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired
 
@@ -26,6 +26,18 @@ class ClassForm(FlaskForm):
 
     sem_sec = StringField('Class', validators=[DataRequired()])
     strength = IntegerField('Class strength', validators=[DataRequired()])
+    sumbit = SubmitField('Submit')
+
+
+class RoomForm(FlaskForm):
+    '''
+    Form for admin to add or edit classes
+    '''
+
+    room = StringField('Room No.', validators=[DataRequired()])
+    capacity = IntegerField('Capacity', validators=[DataRequired()])
+    is_lab = BooleanField('Lab ?')
+    num_sys = IntegerField('No. of systems', default=0)
     sumbit = SubmitField('Submit')
 
 
