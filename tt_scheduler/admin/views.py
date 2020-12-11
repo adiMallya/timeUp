@@ -82,7 +82,76 @@ def list_rooms():
     rooms = Room.query.order_by(Room.lab).all()
     return render_template('admin/rooms/rooms.html', rooms=rooms)
 
+@admin.route('/room/add', methods = ['GET','POST'])
+@login_required
+def add_room():
 
+    check_admin()
+
+    add_room = True
+    # assign_room = False
+
+    form = RoomForm()
+    if form.validate_on_submit():
+        room = Room(rno = form.room.data,
+                    capacity =  form.capacity.data,
+                    lab = form.is_lab.data,
+                    no_of_sys =  form.num_sys.data)
+
+        try:
+            db.session.add(room)
+            db.session.commit()
+            flash('You have successfully added a new class.','success')
+        except:
+            flash('Error: class already exists.')
+
+        return redirect(url_for('admin.list_rooms'))
+
+    return render_template('admin/rooms/room.html', action='Add',
+                            add_room=add_room,
+                            form=form)
+
+
+@admin.route('/rooms/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_room(id):
+   
+    check_admin()
+
+    add_room = False
+
+    room = Room.query.get_or_404(id)
+    form = RoomForm(obj=room)
+    if form.validate_on_submit():
+        room.capacity = form.capacity.data
+        room.lab = form.is_lab.data
+        room.no_of_sys = form.num_sys.data
+        db.session.commit()
+        flash('You have successfully edited the subject.','success')
+
+        return redirect(url_for('admin.list_rooms'))
+
+    form.room.data = room.rno
+    form.capacity.data = room.capacity
+    form.is_lab.data = room.lab
+    form.num_sys.data = room.no_of_sys
+    return render_template('admin/rooms/room.html', action="Edit",
+                           add_room=add_room, form=form,
+                           room=room)
+
+
+@admin.route('/rooms/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_room(id):
+    
+    check_admin()
+
+    room = Room.query.get_or_404(id)
+    db.session.delete(room)
+    db.session.commit()
+    flash('You have successfully deleted the subject.')
+
+    return redirect(url_for('admin.list_rooms'))
 # ------------------------------------------------------------------------------------------------#
 #Subject views
 
