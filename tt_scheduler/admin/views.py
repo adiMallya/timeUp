@@ -25,10 +25,12 @@ def dashboard():
     employees = Employee.query
     subjects = Subject.query
     classes = Class.query
+    rooms = Room.query
     return render_template('admin/dashboard.html',
                             employees=employees,
                             subjects=subjects,
-                            classes=classes
+                            classes=classes,
+                            rooms=rooms
                             )
 
 
