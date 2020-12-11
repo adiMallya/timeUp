@@ -21,7 +21,15 @@ def check_admin():
 @login_required
 def dashboard():
     check_admin() 
-    return render_template('admin/dashboard.html')
+
+    employees = Employee.query
+    subjects = Subject.query
+    classes = Class.query
+    return render_template('admin/dashboard.html',
+                            employees=employees,
+                            subjects=subjects,
+                            classes=classes
+                            )
 
 
 # ------------------------------------------------------------------------------------------------#
