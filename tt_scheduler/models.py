@@ -7,7 +7,7 @@ from sqlalchemy.orm import synonym
 def load_user(user_id):
     return Employee.query.get(int(user_id))
 
-
+#-----------------------------------------TEACHES RELATIONSHIP-------------------------------------------------------------------
 EmployeeSubject = db.Table('emp_subj',
                             db.Column('eid', db.Integer, db.ForeignKey("employee.eid", ondelete="cascade"), primary_key=True),
                             db.Column('sid', db.Integer, db.ForeignKey("subject.sid", ondelete="cascade"), primary_key=True),
@@ -22,7 +22,17 @@ ClassEmployee = db.Table('class_emp',
                         db.Column('eid', db.Integer, db.ForeignKey("employee.eid", ondelete="cascade"), primary_key=True),
                         db.Column('class', db.String, db.ForeignKey("class.cid", ondelete="cascade"), primary_key=True)
 )
+#-----------------------------------------CONDUCTS RELATIONSHIP-------------------------------------------------------------------
+RoomSubject = db.Table('room_subj',
+                        db.Column('rno', db.Integer, db.ForeignKey("room.rno", ondelete="cascade"), primary_key=True),
+                        db.Column('sid', db.Integer, db.ForeignKey("subject.sid", ondelete="cascade"), primary_key=True)
+)
 
+ClassRoom = db.Table('class_room',
+                        db.Column('rno', db.Integer, db.ForeignKey("room.rno", ondelete="cascade"), primary_key=True),
+                        db.Column('class', db.String, db.ForeignKey("class.cid", ondelete="cascade"), primary_key=True)
+)
+#--------------------------------------------------------------------------------------------------------------------------------
 
 class Employee(UserMixin, db.Model):
     '''
@@ -47,6 +57,9 @@ class Employee(UserMixin, db.Model):
     subjects = db.relationship('Subject', 
                                 secondary=EmployeeSubject,
                                 backref=db.backref('employees', lazy='dynamic'))
+
+    assist = db.relationship('Room', backref='employee', uselist=False)#1:1 relationship with rooms
+
     
 def __repr__(self):
         return f'<Employee: {self.username}, {self.email}>'
@@ -92,8 +105,35 @@ class Class(db.Model):
                                 secondary=ClassEmployee,
                                 backref=db.backref('classes', lazy='dynamic'))
 
+    rooms = db.relationship('Room', 
+                                secondary=ClassRoom,
+                                backref=db.backref('classes', lazy='dynamic'))
     def __iter__(self):
         return iter([self.cid])
 
     def __repr__(self):
         return f'<Class: {self.cid}>'
+
+
+
+class Room(db.Model):
+    __tablemame__ = 'rooms'
+
+    rno = db.Column(db.Integer, primary_key=True)
+    lab = db.Column(db.Boolean, default=False)
+    capacity = db.Column(db.Integer, nullable=False)
+    no_of_sys = db.Column(db.Integer)
+
+    employee_id = db.Column(db.Integer, db.ForeignKey('employee.eid'))
+
+    subjects = db.relationship('Subject',
+                                secondary=RoomSubject,
+                                backref=db.backref('rooms', lazy='dynamic'))
+
+
+    def __iter__(self):
+        return iter([self.rno])
+
+    def __repr__(self):
+        return f'<Room: {self.rno}>'
+
