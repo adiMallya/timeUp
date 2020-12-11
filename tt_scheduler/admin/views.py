@@ -2,9 +2,9 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required 
 
 from . import admin
-from .forms import SubjectForm, ClassForm, ClassAssignForm, EmployeeAssignForm
+from .forms import SubjectForm, ClassForm, RoomForm, ClassAssignForm, EmployeeAssignForm
 from .. import db
-from ..models import Employee, Subject, Class
+from ..models import Employee, Subject, Class, Room
 
 
 
@@ -78,7 +78,9 @@ def assign_employee(id):
 @login_required
 def list_rooms():
     check_admin()
-    return render_template('admin/rooms/rooms.html')
+
+    rooms = Room.query.order_by(Room.lab).all()
+    return render_template('admin/rooms/rooms.html', rooms=rooms)
 
 
 # ------------------------------------------------------------------------------------------------#
