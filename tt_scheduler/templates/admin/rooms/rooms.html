@@ -5,5 +5,79 @@
     href="{{ url_for('static', filename='css/style.css') }}"/>
 {% endblock %}
 {%block content%}
-
+    <div class="content-section">
+        <div class="outer">
+            <div class="middle"> 
+                <div class="inner">
+                    <!-- <br/>
+                    
+                    <br/> -->
+                    <h1 style="text-align: center;">Rooms</h1>
+                    {% if rooms %}
+                        <hr class="intro-divider">
+                        <div class="center table-responsive-lg">
+                            <table class="table table-hover table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                    <th scope="col"> Room </th>
+                                    <th scope="col"> Capacity </th>
+                                    <th scope="col"> Lab </th>
+                                    <th scope="col"> Systems </th>
+                                    <th scope="col"> Edit </th>
+                                    <th scope="col"> Delete </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for r in rooms %}
+                                    <tr scope="row">
+                                        <td> {{ r.rno }}</td>
+                                        <td> {{ r.capacity }}</td>
+                                        <td> 
+                                            {% if r.lab %}
+                                                Yes
+                                            {% else %}    
+                                                No
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if r.lab %}
+                                                {{ r.no_of_sys }}
+                                            {% else %}
+                                                N/A 
+                                            {% endif %}
+                                        </td>
+                                        <!-- <td>
+                                            <a href="">
+                                                <i class="fa fa-plus" style="color: black;"></i>
+                                            </a>
+                                        </td> -->
+                                        <td>
+                                            <a href="{{ url_for('admin.edit_room', id=r.rno)}}">
+                                            <i class="fa fa-edit" style="color:black;"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ url_for('admin.delete_room', id=r.rno)}}">
+                                            <i class="fa fa-trash" style="color:black;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>   
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div style="text-align: center">
+                            <h3> No rooms have been added. </h3>
+                            <hr class="intro-divider">
+                    {% endif %}
+                        <a href="{{ url_for('admin.add_room') }}" class="btn btn-default btn-lg">
+                            <i class="fa fa-plus"></i>
+                            Add Room
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content%}
