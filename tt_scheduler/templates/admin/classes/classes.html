@@ -21,8 +21,8 @@
                                     <tr>
                                     <th scope="col"> Class </th>
                                     <th scope="col"> Strength </th>
-                                    <th scope="col">Subjects </th>
-                                    <th scope="col">Assign </th>
+                                    <th scope="col"> Subjects </th>
+                                    <th scope="col"> Room </th>
                                     <th scope="col"> Edit </th>
                                     <th scope="col"> Delete </th>
                                     </tr>
@@ -40,11 +40,20 @@
                                             {% else %}    
                                                 -
                                             {% endif %}
-                                        </td>
-                                        <td>
-                                            <a href="{{ url_for('admin.assign_class', id=c.cid)}}">
+                                            <a href="{{ url_for('admin.assign_subject', id=c.cid)}}">
                                                 <i class="fa fa-plus" style="color: black;"></i>
                                             </a>
+                                        </td>
+                                        <td>
+                                            {% if c.rooms %}
+                                                {% for r in c.rooms %}
+                                                    <li style="list-style-type: none;">{{r.rno}}</li>
+                                                {% endfor %}
+                                            {% else %}
+                                            <a href="{{url_for('admin.assign_room', id=c.cid)}}">
+                                                <i class="fa fa-plus" style="color: black;"></i>
+                                            </a>
+                                            {% endif %}
                                         </td>
                                         <td>
                                             <a href="{{ url_for('admin.edit_class', id=c.cid)}}">
