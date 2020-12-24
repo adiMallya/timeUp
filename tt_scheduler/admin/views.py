@@ -2,7 +2,7 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required 
 
 from . import admin
-from .forms import SubjectForm, ClassForm, RoomForm, ClassAssignForm, EmployeeAssignForm
+from .forms import SubjectForm, ClassForm, RoomForm, SubjectAssignForm, RoomAssignForm, EmployeeAssignForm
 from .. import db
 from ..models import Employee, Subject, Class, Room
 
@@ -277,17 +277,16 @@ def add_class():
                             form=form)
 
 
-@admin.route('/classes/assign/<id>', methods=['GET', 'POST'])
+@admin.route('/classes/assign/subject/<id>', methods=['GET', 'POST'])
 @login_required
-def assign_class(id):
-    
+def assign_subject(id):
     check_admin()
 
     assign_subject = True
 
     classes = Class.query.get_or_404(id)
 
-    form = ClassAssignForm(obj=classes)
+    form = SubjectAssignForm(obj=classes)
     if form.validate_on_submit():
         for sid in form.subjects.data :
             classes.subjects.append(Subject.query.get(sid))
@@ -301,6 +300,29 @@ def assign_class(id):
     return render_template('admin/classes/class.html',
                             classes=classes,assign_subject=assign_subject, form=form)
 
+
+@admin.route('/classes/assign/room/<id>', methods=['GET', 'POST'])
+@login_required
+def assign_room(id):
+    check_admin()
+
+    assign_room = True
+
+    classes = Class.query.get_or_404(id)
+
+    form = RoomAssignForm(obj=classes)
+    if form.validate_on_submit():
+        for rno in form.rooms.data :
+            classes.rooms.append(Room.query.get(rno))
+
+        db.session.add(classes)
+        db.session.commit()
+        flash('You have successfully assigned a room to the class')
+
+        return redirect(url_for('admin.list_classes'))
+    
+    return render_template('admin/classes/class.html',
+                            classes=classes,assign_room=assign_room, form=form)
 
 
 @admin.route('/classes/edit/<id>', methods=['GET', 'POST'])
