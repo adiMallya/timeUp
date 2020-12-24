@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField, IntegerField, SelectField, Boolean
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired
 
-from ..models import Subject, Class
+from ..models import Subject, Class, Room
 
 
 class SubjectForm(FlaskForm):
@@ -52,7 +52,7 @@ class EmployeeAssignForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-class ClassAssignForm(FlaskForm):
+class SubjectAssignForm(FlaskForm):
     '''
     Form for the admin to assign subjects to the class
     '''
@@ -60,3 +60,11 @@ class ClassAssignForm(FlaskForm):
                                get_label="sname")
     submit = SubmitField('Submit')
 
+
+class RoomAssignForm(FlaskForm):
+    '''
+    Form for the admin to assign room to the class
+    '''
+    rooms = QuerySelectField(query_factory=lambda: Room.query.all(),
+                               get_label="rno")
+    submit = SubmitField('Submit')
