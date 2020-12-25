@@ -4,8 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link type="text/css"  rel="stylesheet" 
+    href="{{ url_for('static', filename='css/profile.css') }}"/>
 </head>
+
 <body>
-    
+    <div id="page-content-wrapper">
+        <!-- Topbar -->
+        {% if current_user.is_authenticated %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+              <!-- Navbar brand -->
+              <a class="navbar-brand" href="#">Hi, {{ current_user.username}}</a>
+              <a class="navbar navbar-right" href="{{url_for('auth.logout')}}">Log Out</a>
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- /#topbar-wrapper -->
+
+        <!--page content-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                  <div class="card card-signin flex-row my-5">
+                    <div class="card-img-left d-none d-md-flex">
+                       <!-- Background image for card set in CSS! -->
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title text-center">Edit Profile</h5>
+                      {% with messages =  get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                          {% for category, message in messages %}
+                              <div class="alert alert-{{ category}}">
+                                  {{message}}
+                              </div>
+                          {% endfor %}
+                      {%  endif %}
+                      {% endwith %}
+                      <form method="POST" action="">                     
+                        {{form.hidden_tag()}}
+                        <div class="form-label-group">
+                            {{ form.username.label(class="") }}
+                            {% if form.username.errors %}
+                              {{ form.username(class="form-control is-invalid")}}
+                              <div class="invalid-form">
+                                  {% for e in form.username.errors %}
+                                      <span>{{e}}</span>
+                                  {% endfor %}
+                              </div>
+                            {% else %} 
+                            {{ form.username(class="form-control") }}
+                            {% endif %} 
+                        </div>
+          
+                        <div class="form-label-group">
+                            {{ form.email.label(class="") }}
+                            {% if form.email.errors %}
+                              {{ form.email(class="form-control is-invalid")}}
+                              <div class="invalid-form">
+                                  {% for e in form.email.errors %}
+                                      <span>{{e}}</span>
+                                  {% endfor %}
+                              </div>
+                            {% else %} 
+                            {{ form.email(class="form-control") }}
+                            {% endif %} 
+                        </div>
+
+                        <div class="form-label-group">
+                            {{ form.fname.label(class="") }}
+                            {% if form.fname.errors %}
+                              {{ form.fname(class="form-control is-invalid")}}
+                              <div class="invalid-form">
+                                  {% for e in form.fname.errors %}
+                                      <span>{{e}}</span>
+                                  {% endfor %}
+                              </div>
+                            {% else %} 
+                            {{ form.fname(class="form-control") }}
+                            {% endif %} 
+                        </div>
+
+                        <div class="form-label-group">
+                            {{ form.mname.label(class="") }}
+                            {{ form.mname(class="form-control") }}
+                        </div>
+
+                        <div class="form-label-group">
+                            {{ form.lname.label(class="") }}
+                            {% if form.lname.errors %}
+                              {{ form.lname(class="form-control is-invalid")}}
+                              <div class="invalid-form">
+                                  {% for e in form.lname.errors %}
+                                      <span>{{e}}</span>
+                                  {% endfor %}
+                              </div>
+                            {% else %} 
+                            {{ form.lname(class="form-control") }}
+                            {% endif %} 
+                        </div>
+
+                        <div class="form-label-group">
+                            {{ form.type.label(class="") }}
+                            {{ form.type(class="form-control") }}
+                        </div>
+
+                        <div class="form-label-group-small">
+                            {{ form.workload.label(class="") }}
+                            {% if form.workload.errors %}
+                              {{ form.workload(class="form-control is-invalid")}}
+                              <div class="invalid-form">
+                                  {% for e in form.workload.errors %}
+                                      <span>{{e}}</span>
+                                  {% endfor %}
+                              </div>
+                            {% else %} 
+                            {{ form.workload(class="form-control",type="number") }}
+                            {% endif %} 
+                        </div>
+
+                        <div class="form-label-group-small">
+                            {{ form.phno.label(class="") }}
+                            {% if form.phno.errors %}
+                              {{ form.phno(class="form-control is-invalid")}}
+                              <div class="invalid-form">
+                                  {% for e in form.phno.errors %}
+                                      <span>{{e}}</span>
+                                  {% endfor %}
+                              </div>
+                            {% else %} 
+                            {{ form.phno(class="form-control",type="tel") }}
+                            {% endif %} 
+                        </div>
+                        <hr> 
+
+                        <!-- submit button -->
+                        {{ form.submit(class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2") }}
+                       
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>    
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>
