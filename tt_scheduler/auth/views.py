@@ -55,7 +55,7 @@ def login():
                 return redirect(url_for('admin.dashboard'))
             else:
                 # return render_template('account.html')
-                return redirect(url_for('user.homepage'))
+                return redirect(url_for('user.editprofile'))
 
         # when login details are incorrect
         else:
