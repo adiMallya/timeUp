@@ -16,7 +16,7 @@ class SubjectForm(FlaskForm):
     teaching_hrs = IntegerField('Teaching hours', validators=[DataRequired()])
     learning_hrs = IntegerField('Learning hours', validators=[DataRequired()])
     creds = IntegerField('Credits')
-    sumbit = SubmitField('Submit')
+    submit = SubmitField('Submit')
 
 
 class ClassForm(FlaskForm):
@@ -26,7 +26,7 @@ class ClassForm(FlaskForm):
 
     sem_sec = StringField('Class', validators=[DataRequired()])
     strength = IntegerField('Class strength', validators=[DataRequired()])
-    sumbit = SubmitField('Submit')
+    submit = SubmitField('Submit')
 
 
 class RoomForm(FlaskForm):
@@ -38,18 +38,18 @@ class RoomForm(FlaskForm):
     capacity = IntegerField('Capacity', validators=[DataRequired()])
     is_lab = BooleanField('Lab ?')
     num_sys = IntegerField('No. of systems', default=0)
-    sumbit = SubmitField('Submit')
+    submit = SubmitField('Submit')
 
 
 class EmployeeAssignForm(FlaskForm):
     '''
     Form for the admin to assign subjects and class to the employee
     '''
-    subjects = QuerySelectField(query_factory=lambda: Subject.query.all(),
+    subjects = QuerySelectField('Subject',query_factory=lambda: Subject.query.all(),
                                get_label="sname")
-    classes = QuerySelectField(query_factory=lambda: Class.query.all(),
+    classes = QuerySelectField('Class',query_factory=lambda: Class.query.all(),
                                get_label="cid")
-    submit = SubmitField('Submit')
+    submit = SubmitField('Assign')
 
 
 class SubjectAssignForm(FlaskForm):
