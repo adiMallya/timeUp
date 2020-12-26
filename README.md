@@ -14,7 +14,7 @@ We assume that you have `git` and `pip` installed ([ref](https://packaging.pytho
 ```
 3. Create a `timetable-scheduler/instance/config.py` file to store keys(this is to be hidden in production/version control)
 
-Inside the instance/config.py file
+Inside the `instance/config.py` file paste the below two lines
 ```
     SECRET_KEY = '842266388f2c6e4afc87a51854826973'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
