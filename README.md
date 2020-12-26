@@ -12,21 +12,27 @@ We assume that you have `git` and `pip` installed ([ref](https://packaging.pytho
 ```
     pip install -r requirements.txt
 ```
+3. Create a timetable-scheduler/instance/config.py file to store keys(this is to be hidden in production/version control)
 
+Inside the instance/config.py file
+```
+    SECRET_KEY = '842266388f2c6e4afc87a51854826973'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
+```
 
 ## Running the app
 
 ```
     export FLASK_CONFIG=development
     export FLASK_APP=run.py
-    flask run
+    flask run -h localhost -p 5000
 ```
 On Windows, you could use CMD or Anaconda Shell :
 
 ```
     set FLASK_CONFIG=development
     set FLASK_APP=run.py
-    flask run
+    flask run -h localhost -p 5000
 ```
 Point your web browser to http://localhost:5000/
 
