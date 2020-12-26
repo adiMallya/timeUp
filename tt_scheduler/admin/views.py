@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 
 from . import admin
 from .forms import SubjectForm, ClassForm, RoomForm, SubjectAssignForm, RoomAssignForm, EmployeeAssignForm
+from ..user.forms import EditProfileForm
 from .. import db
 from ..models import Employee, Subject, Class, Room
 
@@ -377,4 +378,27 @@ def delete_class(id):
 @login_required
 def show_profile():
     check_admin()
-    return render_template('admin/account.html')
+
+    user = Employee.query.get_or_404(current_user.eid)
+    form = EditProfileForm(obj=admin)
+    if form.validate_on_submit():
+        user.f_name = form.fname.data
+        user.m_name = form.mname.data
+        user.l_name = form.lname.data
+        user.type = form.type.data
+        user.workload = form.workload.data
+        user.ph_no = form.phno.data
+        db.session.commit()
+        flash('Profile updated.','success')
+
+        return redirect(url_for('user.show_profile'))
+
+    form.username.data = user.username
+    form.email.data = user.email
+    form.fname.data = user.f_name
+    form.mname.data = user.m_name
+    form.lname.data = user.l_name
+    form.type.data = user.type
+    form.workload.data = user.workload
+    form.phno.data = user.ph_no
+    return render_template('admin/account.html', form=form, user=user)
