@@ -391,7 +391,7 @@ def show_profile():
         db.session.commit()
         flash('Profile updated.','success')
 
-        return redirect(url_for('user.show_profile'))
+        return redirect(url_for('admin.show_profile'))
 
     form.username.data = user.username
     form.email.data = user.email
