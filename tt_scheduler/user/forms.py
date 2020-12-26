@@ -7,7 +7,7 @@ class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     fname = StringField('First Name', validators=[DataRequired()])
-    mname = StringField('Middle Name', validators=[DataRequired()])
+    mname = StringField('Middle Name', validators=[DataRequired()], default='-')
     lname = StringField('Last Name', validators=[DataRequired()])
     type = SelectField('Job Type', choices=[('Teaching','Teaching'),
                                             ('Non-teaching','Non-teaching')])
