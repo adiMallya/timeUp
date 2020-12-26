@@ -2,7 +2,7 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/style.css') }}"/>
+    href="{{ url_for('static', filename='css/') }}"/>
 {% endblock %}
 {%block content%}
     <div class="content-section">
@@ -22,6 +22,7 @@
                                     <th scope="col"> Room </th>
                                     <th scope="col"> Capacity </th>
                                     <th scope="col"> Lab </th>
+                                    <!-- <th scope="col"> Subject </th> -->
                                     <th scope="col"> Systems </th>
                                     <th scope="col"> Edit </th>
                                     <th scope="col"> Delete </th>
@@ -46,11 +47,6 @@
                                                 N/A 
                                             {% endif %}
                                         </td>
-                                        <!-- <td>
-                                            <a href="">
-                                                <i class="fa fa-plus" style="color: black;"></i>
-                                            </a>
-                                        </td> -->
                                         <td>
                                             <a href="{{ url_for('admin.edit_room', id=r.rno)}}">
                                             <i class="fa fa-edit" style="color:black;"></i>
@@ -71,7 +67,7 @@
                             <h3> No rooms have been added. </h3>
                             <hr class="intro-divider">
                     {% endif %}
-                        <a href="{{ url_for('admin.add_room') }}" class="btn btn-default btn-lg">
+                        <a href="{{ url_for('admin.add_room') }}" class="btn btn-outline-info btn-lg">
                             <i class="fa fa-plus"></i>
                             Add Room
                         </a>

@@ -3,11 +3,11 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/style.css') }}"/>
+    href="{{ url_for('static', filename='') }}"/>
 {% endblock %}
 {%block content%}
     <div class="content-section">
-        <div class="outer">
+        <!-- <div class="outer">
             <div class="middle">
                 <div class="inner">
                     <div class="center">
@@ -20,6 +20,54 @@
                         {{ wtf.quick_form(form) }}
                     </div>
                 </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+              <div class="card card-signin flex-row my-5">
+                <div class="card-img-left d-none d-md-flex">
+                   <!-- Background image for card set in CSS! -->
+                </div>
+                <div class="card-body">
+                  {% if add_room %}
+                    <h2 class="card-title text-center">Add Subject</h2>
+                  {% else %}
+                    <h2 class="card-title text-center">Edit Subject</h2>
+                  {% endif %}
+                  <br/>
+                 
+                  <form method="POST" action="">                     
+                    {{form.hidden_tag()}}
+                    <div class="form-group">
+                        {{ form.name.label(class="form-label") }}
+                        {{ form.name(class="form-control") }}
+                    </div>
+        
+                    <div class="form-group">
+                        {{ form.type.label(class="form-label") }}
+                        {{ form.type(class="form-control") }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.teaching_hrs.label(class="form-label") }}
+                        {{ form.teaching_hrs(class="form-control") }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.learning_hrs.label(class="form-label") }}
+                        {{ form.learning_hrs(class="form-control") }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.creds.label(class="form-label") }}
+                        {{ form.creds(class="form-control") }}
+                    </div>
+                    <hr> 
+                    <!-- submit button -->
+                    {{ form.submit(class="btn btn-lg btn-outline-secondary text-uppercase font-weight-bold mb-2") }}
+                  </form>
+                </div>
+              </div>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
 {% endblock %}
 {%block content%}
 <div class="content-section">
- <div class="outer">
+ <!-- <div class="outer">
     <div class="middle">
       <div class="inner">
         <div class="center">
@@ -20,7 +20,42 @@
                 </span>
             </p>
             <br/>
-            {{ wtf.quick_form(form) }}
+            {{ wtf.quick_form(form) }} 
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-lg-10 col-xl-9 mx-auto">
+      <div class="card card-signin flex-row my-5">
+        <div class="card-img-left d-none d-md-flex">
+           <!-- Background image for card set in CSS! -->
+        </div>
+        <div class="card-body">
+          <h2 class="card-title text-center">Subjects & Class</h5>
+          <br/>
+          <p>
+              Select a subject and class to assign to
+              <span style="color: #aec251;">
+                  {{ employee.f_name }} {{ employee.l_name }}
+              </span>
+          </p>
+          <br/>
+          <form method="POST" action="">                     
+            {{form.hidden_tag()}}
+            <div class="form-label-group">
+                {{ form.subjects.label(class="") }}
+                {{ form.subjects(class="form-control") }}
+            </div>
+
+            <div class="form-label-group">
+                {{ form.classes.label(class="") }}
+                {{ form.classes(class="form-control") }}
+            </div>
+            <hr> 
+            <!-- submit button -->
+            {{ form.submit(class="btn btn-lg btn-outline-secondary text-uppercase font-weight-bold mb-2") }}
+          </form>
         </div>
       </div>
     </div>

@@ -3,11 +3,11 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/style.css') }}"/>
+    href="{{ url_for('static', filename='') }}"/>
 {% endblock %}
 {%block content%}
     <div class="content-section">
-        <div class="outer">
+        <!-- <div class="outer">
             <div class="middle">
                 <div class="inner">
                     <div class="center">
@@ -20,6 +20,49 @@
                         {{ wtf.quick_form(form) }}
                     </div>
                 </div>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+              <div class="card card-signin flex-row my-5">
+                <div class="card-img-left d-none d-md-flex">
+                   <!-- Background image for card set in CSS! -->
+                </div>
+                <div class="card-body">
+                  {% if add_room %}
+                    <h2 class="card-title text-center">Add Room</h2>
+                  {% else %}
+                    <h2 class="card-title text-center">Edit Room</h2>
+                  {% endif %}
+                  <br/>
+                 
+                  <form method="POST" action="">                     
+                    {{form.hidden_tag()}}
+                    <div class="form-group">
+                        {{ form.room.label(class="form-label") }}
+                        {{ form.room(class="form-control") }}
+                    </div>
+        
+                    <div class="form-group">
+                        {{ form.capacity.label(class="form-label") }}
+                        {{ form.capacity(class="form-control") }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.is_lab.label(class="form-label") }}
+                        {{ form.is_lab(class="") }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.num_sys.label(class="form-label") }}
+                        {{ form.num_sys(class="form-control") }}
+                    </div>
+                    <hr> 
+                    <!-- submit button -->
+                    {{ form.submit(class="btn btn-lg btn-outline-secondary text-uppercase font-weight-bold mb-2") }}
+                  </form>
+                </div>
+              </div>
             </div>
         </div>
     </div>

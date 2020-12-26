@@ -2,7 +2,7 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/style.css') }}"/>
+    href="{{ url_for('static', filename='css/') }}"/>
 {% endblock %}
 {%block content%}
     <div class="content-section">
@@ -32,11 +32,11 @@
                                     {% for e in employees %}
                                         {% if e.is_admin %}
                                             <tr scope="row" class="table-info">
-                                                <td> Admin<i class="fa fa-key"></i></td>
+                                                <td> {{e.f_name}} {{e.l_name}}<i class="fa fa-key"></i></td>
                                                 <td> {{e.email}}</td> 
-                                                <td> N/A</td>
-                                                <td> N/A</td>
-                                                <td> N/A</td>
+                                                <td> {{e.ph_no}}</td>
+                                                <td> {{e.type}}</td>
+                                                <td> {{e.workload}}</td>
                                                 <td> N/A</td>
                                                 <td> N/A</td>
                                             </tr>

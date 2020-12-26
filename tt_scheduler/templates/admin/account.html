@@ -2,8 +2,129 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/style.css') }}"/>
+    href="{{ url_for('static', filename='') }}"/>
 {% endblock %}
 {%block content%}
+<div class="row">
+    <div class="col-lg-10 col-xl-9 mx-auto">
+      <div class="card card-signin flex-row my-5">
+        <div class="card-img-left d-none d-md-flex">
+           <!-- Background image for card set in CSS! -->
+        </div>
+        <div class="card-body">
+          <h2 class="card-title text-center">My Account</h5>
+          {% with messages =  get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+                  <div class="alert alert-{{ category}}">
+                      {{message}}
+                  </div>
+              {% endfor %}
+          {%  endif %}
+          {% endwith %}
+          <form method="POST" action="">                     
+            {{form.hidden_tag()}}
+            <div class="form-label-group">
+                {{ form.username.label(class="") }}
+                {% if form.username.errors %}
+                  {{ form.username(class="form-control is-invalid")}}
+                  <div class="invalid-form">
+                      {% for e in form.username.errors %}
+                          <span>{{e}}</span>
+                      {% endfor %}
+                  </div>
+                {% else %} 
+                {{ form.username(class="form-control") }}
+                {% endif %} 
+            </div>
 
+            <div class="form-label-group">
+                {{ form.email.label(class="") }}
+                {% if form.email.errors %}
+                  {{ form.email(class="form-control is-invalid")}}
+                  <div class="invalid-form">
+                      {% for e in form.email.errors %}
+                          <span>{{e}}</span>
+                      {% endfor %}
+                  </div>
+                {% else %} 
+                {{ form.email(class="form-control") }}
+                {% endif %} 
+            </div>
+
+            <div class="form-label-group">
+                {{ form.fname.label(class="") }}
+                {% if form.fname.errors %}
+                  {{ form.fname(class="form-control is-invalid")}}
+                  <div class="invalid-form">
+                      {% for e in form.fname.errors %}
+                          <span>{{e}}</span>
+                      {% endfor %}
+                  </div>
+                {% else %} 
+                {{ form.fname(class="form-control") }}
+                {% endif %} 
+            </div>
+
+            <div class="form-label-group">
+                {{ form.mname.label(class="") }}
+                {{ form.mname(class="form-control") }}
+            </div>
+
+            <div class="form-label-group">
+                {{ form.lname.label(class="") }}
+                {% if form.lname.errors %}
+                  {{ form.lname(class="form-control is-invalid")}}
+                  <div class="invalid-form">
+                      {% for e in form.lname.errors %}
+                          <span>{{e}}</span>
+                      {% endfor %}
+                  </div>
+                {% else %} 
+                {{ form.lname(class="form-control") }}
+                {% endif %} 
+            </div>
+
+            <div class="form-label-group">
+                {{ form.type.label(class="") }}
+                {{ form.type(class="form-control") }}
+            </div>
+
+            <div class="form-label-group-small">
+                {{ form.workload.label(class="") }}
+                {% if form.workload.errors %}
+                  {{ form.workload(class="form-control is-invalid")}}
+                  <div class="invalid-form">
+                      {% for e in form.workload.errors %}
+                          <span>{{e}}</span>
+                      {% endfor %}
+                  </div>
+                {% else %} 
+                {{ form.workload(class="form-control",type="number") }}
+                {% endif %} 
+            </div>
+
+            <div class="form-label-group-small">
+                {{ form.phno.label(class="") }}
+                {% if form.phno.errors %}
+                  {{ form.phno(class="form-control is-invalid")}}
+                  <div class="invalid-form">
+                      {% for e in form.phno.errors %}
+                          <span>{{e}}</span>
+                      {% endfor %}
+                  </div>
+                {% else %} 
+                {{ form.phno(class="form-control",type="tel") }}
+                {% endif %} 
+            </div>
+            <hr> 
+
+            <!-- submit button -->
+            {{ form.submit(class="btn btn-lg btn-outline-info text-uppercase font-weight-bold mb-2") }}
+           
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
 {% endblock content%}

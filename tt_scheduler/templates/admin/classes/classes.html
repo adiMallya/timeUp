@@ -2,7 +2,7 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/style.css') }}"/>
+    href="{{ url_for('static', filename='css/') }}"/>
 {% endblock %}
 {%block content%}
     <div class="content-section">
@@ -75,7 +75,7 @@
                             <h3> No classes have been added. </h3>
                             <hr class="intro-divider">
                     {% endif %}
-                        <a href="{{ url_for('admin.add_class') }}" class="btn btn-default btn-lg">
+                        <a href="{{ url_for('admin.add_class') }}" class="btn btn-outline-info btn-lg">
                             <i class="fa fa-plus"></i>
                             Add Class
                         </a>
