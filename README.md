@@ -12,7 +12,7 @@ We assume that you have `git` and `pip` installed ([ref](https://packaging.pytho
 ```
     pip install -r requirements.txt
 ```
-3. Create a timetable-scheduler/instance/config.py file to store keys(this is to be hidden in production/version control)
+3. Create a `timetable-scheduler/instance/config.py` file to store keys(this is to be hidden in production/version control)
 
 Inside the instance/config.py file
 ```
