@@ -257,6 +257,8 @@ def add_class():
 
     add_class = True
     assign_subject = False
+    assign_room = False
+
 
     form = ClassForm()
     if form.validate_on_submit():
@@ -273,7 +275,9 @@ def add_class():
         return redirect(url_for('admin.list_classes'))
 
     return render_template('admin/classes/class.html', action='Add',
-                            add_class=add_class, assign_subject=assign_subject,
+                            add_class=add_class,
+                            assign_subject=assign_subject,
+                            assign_room=assign_room,
                             form=form)
 
 
@@ -298,7 +302,7 @@ def assign_subject(id):
         return redirect(url_for('admin.list_classes'))
     
     return render_template('admin/classes/class.html',
-                            classes=classes,assign_subject=assign_subject, form=form)
+                            classes=classes, assign_subject=assign_subject, form=form)
 
 
 @admin.route('/classes/assign/room/<id>', methods=['GET', 'POST'])
@@ -322,17 +326,17 @@ def assign_room(id):
         return redirect(url_for('admin.list_classes'))
     
     return render_template('admin/classes/class.html',
-                            classes=classes,assign_room=assign_room, form=form)
+                            classes=classes, assign_room=assign_room, form=form)
 
 
 @admin.route('/classes/edit/<id>', methods=['GET', 'POST'])
 @login_required
 def edit_class(id):
-   
     check_admin()
 
     add_class = False
     assign_subject = False
+    assign_room = False
 
     classes = Class.query.get_or_404(id)
     form = ClassForm(obj=classes)
@@ -347,7 +351,9 @@ def edit_class(id):
     form.sem_sec.data = classes.cid
     form.strength.data = classes.strength 
     return render_template('admin/classes/class.html', action="Edit",
-                           add_class=add_class, assign_subject=assign_subject,
+                           add_class=add_class,
+                           assign_subject=assign_subject,
+                           assign_room=assign_room,
                            form=form,
                            classes=classes)
 
