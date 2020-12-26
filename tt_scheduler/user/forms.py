@@ -11,6 +11,6 @@ class EditProfileForm(FlaskForm):
     lname = StringField('Last Name', validators=[DataRequired()])
     type = SelectField('Job Type', choices=[('Teaching','Teaching'),
                                             ('Non-teaching','Non-teaching')])
-    workload = IntegerField('Workload', validators=[DataRequired()])
+    workload = IntegerField('Workload (hrs)', validators=[DataRequired()])
     phno = StringField('Ph.No', validators=[DataRequired()])
     submit = SubmitField('Save')
