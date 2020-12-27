@@ -16,21 +16,23 @@
                 <div class="card-body bg-dark classes-box">
                   {% if assign_subject==False and assign_room==False %}
                     {% if add_class%}
-                        <h2 class="card-title text-center">Add Class</h2>
+                        <h2 class="card-title text-center classes-main-heading">Add Class</h2>
                     {% else %}
                         <h2 class="card-title text-center">Edit Class</h2>
                     {% endif %}
                     <br/>
                     <form method="POST" action="">                     
                         {{form.hidden_tag()}}
-                        <div class="form-group">
-                            {{ form.sem_sec.label(class="form-label") }}
-                            {{ form.sem_sec(class="form-control") }}
+                        <div class="form-group row">
+                            <div class="col-2">{{ form.sem_sec.label(class="form-label classes-heading") }}</div>
+                            
+                            <div class="col-10">{{ form.sem_sec(class="form-control bg-dark text-danger") }}</div>
                         </div>
             
-                        <div class="form-group">
-                            {{ form.strength.label(class="form-label") }}
-                            {{ form.strength(class="form-control") }}
+                        <div class="form-group row">
+                            <div class="col-2">{{ form.strength.label(class="form-label classes-heading") }}</div>
+                            <div class="col-10">{{ form.strength(class="form-control bg-dark text-danger") }}</div>
+                            
                         </div>
 
                         <hr> 
