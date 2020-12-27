@@ -1,91 +1,45 @@
-/*body, html {
-    width: 100%;
-    height: 100%;
-}
-body, h1, h2, h3 {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-}
-.center {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-}
-.content-section {
-    padding: 50px 0;
-    border-top: 1px solid #e7e7e7;
-}
-.intro-divider {
-    width: 400px;
-    border-top: 1px solid #f8f8f8;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-}
-.intro-header {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    text-align: center;
-    color: #f8f8f8;
-    height: 100%;
-}
-.intro-message {
-    position: relative;
-    padding-top: 20%;
-    padding-bottom: 20%;
-}
-.intro-message > h1 {
-    margin: 0;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-    font-size: 5em;
-}
-.intro-message > h3 {
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-}
-.lead {
-    font-size: 18px;
-    font-weight: 400;
-}
-.wrapper {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -4em;
-  }
-.outer {
-    display: table;
-    position: absolute;
-    height: 70%;
-    width: 100%;
-}
-.middle {
-    display: table-cell;
-    vertical-align: middle;
-}
-.inner {
-    margin-left: auto;
-    margin-right: auto;
-}
-*/
+/*--CLASSES HTML---*/
 .column-color{
     color: #fff;
     text-align: center;
     padding: 30px;
 }
-
-.per-row:hover{
-    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+.classes-per-row:active{
+    color: #fff;
+}
+.classes-per-row:hover{
+    background: linear-gradient(45deg,#FF5370,#ff869a);
     color: #000;
 }
 
-.classes-table-heads{
+.classes-per-row li:hover{
+    color: #000;
+}
+.all-table-heads{
     text-align: center;
 }
 
 /*---CLASS BUTTON--*/
 .class-add-btn-row{
     text-align: center;
+    margin: 50px auto;
 }
-
 
 .classes-box{
     color: white;
+}
+
+.classes-main-heading{
+    color: #DC3545;
+}
+.classes-heading{
+    color: #DC3545;
+    font-size: 1.2rem;
+}
+
+
+/*----SUBJECTS---*/
+.subjects-per-row:hover{
+    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+    color: #000;
 }
