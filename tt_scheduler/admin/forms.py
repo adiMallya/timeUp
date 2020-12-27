@@ -3,9 +3,9 @@ from wtforms import StringField, SubmitField, IntegerField, SelectField, Boolean
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired
 
-from ..models import Subject, Class, Room
+from ..models import Employee, Subject, Class, Room
 
-
+#---------------------------------SUBJECT----------------------------------------------------------------
 class SubjectForm(FlaskForm):
     '''
     Form for admin to add or edit subjects
@@ -18,7 +18,7 @@ class SubjectForm(FlaskForm):
     creds = IntegerField('Credits')
     submit = SubmitField('Submit')
 
-
+#---------------------------------CLASS----------------------------------------------------------------
 class ClassForm(FlaskForm):
     '''
     Form for admin to add or edit classes
@@ -27,29 +27,6 @@ class ClassForm(FlaskForm):
     sem_sec = StringField('Class', validators=[DataRequired()])
     strength = IntegerField('Class strength', validators=[DataRequired()])
     submit = SubmitField('Submit')
-
-
-class RoomForm(FlaskForm):
-    '''
-    Form for admin to add or edit classes
-    '''
-
-    room = StringField('Room No.', validators=[DataRequired()])
-    capacity = IntegerField('Capacity', validators=[DataRequired()])
-    is_lab = BooleanField('Lab ?')
-    num_sys = IntegerField('No. of systems', default=0)
-    submit = SubmitField('Submit')
-
-
-class EmployeeAssignForm(FlaskForm):
-    '''
-    Form for the admin to assign subjects and class to the employee
-    '''
-    subjects = QuerySelectField('Subject',query_factory=lambda: Subject.query.all(),
-                               get_label="sname")
-    classes = QuerySelectField('Class',query_factory=lambda: Class.query.all(),
-                               get_label="cid")
-    submit = SubmitField('Assign')
 
 
 class SubjectAssignForm(FlaskForm):
@@ -68,3 +45,36 @@ class RoomAssignForm(FlaskForm):
     rooms = QuerySelectField(query_factory=lambda: Room.query.all(),
                                get_label="rno")
     submit = SubmitField('Submit')
+
+#---------------------------------ROOMS-----------------------------------------------------------------
+class RoomForm(FlaskForm):
+    '''
+    Form for admin to add or edit classes
+    '''
+
+    room = StringField('Room No.', validators=[DataRequired()])
+    capacity = IntegerField('Capacity', validators=[DataRequired()])
+    is_lab = BooleanField('Lab ?')
+    num_sys = IntegerField('No. of systems', default=0)
+    submit = SubmitField('Submit')
+
+class InchargeAssignForm(FlaskForm):
+    '''
+    Form for admin to assign an incharge to every room
+    '''
+    employee =  QuerySelectField('Staff',query_factory=lambda: Employee.query.all(),
+                               get_label="f_name")
+    submit = SubmitField('Assign')    
+
+#---------------------------------STAFF----------------------------------------------------------------
+class EmployeeAssignForm(FlaskForm):
+    '''
+    Form for the admin to assign subjects and class to the employee
+    '''
+    subjects = QuerySelectField('Subject',query_factory=lambda: Subject.query.all(),
+                               get_label="sname")
+    classes = QuerySelectField('Class',query_factory=lambda: Class.query.all(),
+                               get_label="cid")
+    submit = SubmitField('Assign')
+
+
