@@ -21,6 +21,7 @@
                                     <tr>
                                     <th scope="col"> Room </th>
                                     <th scope="col"> Capacity </th>
+                                    <th scope="col"> Incharge </th>
                                     <th scope="col"> Lab </th>
                                     <!-- <th scope="col"> Subject </th> -->
                                     <th scope="col"> Systems </th>
@@ -33,6 +34,15 @@
                                     <tr scope="row">
                                         <td> {{ r.rno }}</td>
                                         <td> {{ r.capacity }}</td>
+                                        <td> 
+                                            {% if r.incharge %}
+                                                {{r.incharge}}
+                                            {% else %}
+                                                <a href="{{ url_for('admin.assign_incharge', id=r.rno)}}">
+                                                    <i class="fa fa-plus" style="color: black;"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
                                         <td> 
                                             {% if r.lab %}
                                                 Yes
