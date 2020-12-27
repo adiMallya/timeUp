@@ -3,7 +3,7 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='') }}"/>
+    href="{{ url_for('static', filename='css/style.css') }}"/>
 {% endblock %}
 {%block content%}
     <div class="content-section">
@@ -13,7 +13,7 @@
                 <div class="card-img-left d-none d-md-flex">
                    <!-- Background image for card set in CSS! -->
                 </div>
-                <div class="card-body">
+                <div class="card-body bg-dark classes-box">
                   {% if assign_subject==False and assign_room==False %}
                     {% if add_class%}
                         <h2 class="card-title text-center">Add Class</h2>
@@ -35,7 +35,9 @@
 
                         <hr> 
                         <!-- submit button -->
-                        {{ form.submit(class="btn btn-lg btn-outline-secondary text-uppercase font-weight-bold mb-2") }}
+                        <div class="class-add-btn-row">
+                            {{ form.submit(class="btn btn-outline-info btn-lg class-btn text-uppercase font-weight-bold mb-2") }}
+                        </div>
                     </form>
                   {% elif assign_subject %}
                     <h2 class="card-title text-center">Subjects</h2>
@@ -48,7 +50,9 @@
                         </div>
                         <hr> 
                         <!-- submit button -->
-                        {{ form.submit(class="btn btn-lg btn-outline-secondary text-uppercase font-weight-bold mb-2") }}
+                        <div class="class-add-btn-row">
+                            {{ form.submit(class="btn btn-primary btn-lg class-add-btn-row text-uppercase font-weight-bold mb-2") }}
+                        </div>
                     </form>
                   {% elif assign_room %}
                     <h2 class="card-title text-center">Room</h2>

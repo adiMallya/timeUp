@@ -1,87 +1,98 @@
+
 {% extends "admin/layout.html" %}
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/') }}"/>
+    href="{{ url_for('static', filename='css/style.css') }}"/>
+    
 {% endblock %}
 {%block content%}
-    <div class="content-section">
-        <div class="outer">
-            <div class="middle"> 
-                <div class="inner">
-                    <!-- <br/>
-                    
-                    <br/> -->
-                    <h1 style="text-align: center;">Classes</h1>
-                    {% if classes %}
-                        <hr class="intro-divider">
-                        <div class="center table-responsive-lg">
-                            <table class="table table-hover table-bordered">
-                                <thead class="thead-dark">
-                                    <tr>
-                                    <th scope="col"> Class </th>
-                                    <th scope="col"> Strength </th>
-                                    <th scope="col"> Subjects </th>
-                                    <th scope="col"> Room </th>
-                                    <th scope="col"> Edit </th>
-                                    <th scope="col"> Delete </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {% for c in classes %}
-                                    <tr scope="row">
-                                        <td> {{ c.cid }}</td>
-                                        <td> {{ c.strength }}</td>
-                                        <td> 
-                                            {% if c.subjects %}
-                                                {% for s in c.subjects %}
-                                                    <li style="list-style-type: none;">{{s.sname}}</li>
-                                                {% endfor %}
-                                            {% else %}    
-                                                -
-                                            {% endif %}
-                                            <a href="{{ url_for('admin.assign_subject', id=c.cid)}}">
-                                                <i class="fa fa-plus" style="color: black;"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            {% if c.rooms %}
-                                                {% for r in c.rooms %}
-                                                    <li style="list-style-type: none;">{{r.rno}}</li>
-                                                {% endfor %}
-                                            {% else %}
-                                            <a href="{{url_for('admin.assign_room', id=c.cid)}}">
-                                                <i class="fa fa-plus" style="color: black;"></i>
-                                            </a>
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            <a href="{{ url_for('admin.edit_class', id=c.cid)}}">
-                                            <i class="fa fa-edit" style="color:black;"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ url_for('admin.delete_class', id=c.cid)}}">
-                                            <i class="fa fa-trash" style="color:black;"></i>
-                                            </a>
-                                        </td>
-                                    </tr>   
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    {% else %}
-                        <div style="text-align: center">
-                            <h3> No classes have been added. </h3>
+<div class="container-fluid bg-dark">
+    <div class="row">
+        <div class="col">
+        <div class="content-section">
+            <div class="outer">
+                <div class="middle"> 
+                    <div class="inner">
+                        <!-- <br/>
+                        
+                        <br/> -->
+                        <h1 style="text-align: center; color: white;">Classes</h1>
+                        {% if classes %}
                             <hr class="intro-divider">
-                    {% endif %}
-                        <a href="{{ url_for('admin.add_class') }}" class="btn btn-outline-info btn-lg">
-                            <i class="fa fa-plus"></i>
-                            Add Class
-                        </a>
+                            <div class="table-responsive-lg">
+                                <table class="table table-hover ">
+                                    <thead class="thead-dark">
+                                        <tr class="row classes-table-heads">
+                                        <th class="col-2 classes-table-heads" > Class </th>
+                                        <th class="col-2 classes-table-heads" > Strength </th>
+                                        <th class="col-2 classes-table-heads" > Subjects </th>
+                                        <th class="col-2 classes-table-heads"> Room </th>
+                                        <th class="col-2 classes-table-heads"> Edit </th>
+                                        <th class="col-2 classes-table-heads"> Delete </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for c in classes %}
+                                        <tr class="row per-row">
+                                            <td class="col-2 column-color" > {{ c.cid }}</td>
+                                            <td class="col-2 column-color"> {{ c.strength }}</td>
+                                            <td class="col-2 column-color"> 
+                                                {% if c.subjects %}
+                                                    {% for s in c.subjects %}
+                                                        <li style="list-style-type: none; margin: 10px auto;">{{s.sname}}</li>
+                                                    {% endfor %}
+                                                {% else %}    
+                                                    -
+                                                {% endif %}
+                                                <a href="{{ url_for('admin.assign_subject', id=c.cid)}}">
+                                                    <i class="fa fa-plus" style="color: black;"></i>
+                                                </a>
+                                            </td>
+                                            <td class="col-2 column-color">
+                                                {% if c.rooms %}
+                                                    {% for r in c.rooms %}
+                                                        <li style="list-style-type: none;">{{r.rno}}</li>
+                                                    {% endfor %}
+                                                {% else %}
+                                                <a href="{{url_for('admin.assign_room', id=c.cid)}}">
+                                                    <i class="fa fa-plus" style="color: black;"></i>
+                                                </a>
+                                                {% endif %}
+                                            </td>
+                                            <td class="col-2 column-color">
+                                                <a href="{{ url_for('admin.edit_class', id=c.cid)}}">
+                                                <i class="fa fa-edit" style="color:black;"></i>
+                                                </a>
+                                            </td>
+                                            <td class="col-2 column-color">
+                                                <a href="{{ url_for('admin.delete_class', id=c.cid)}}">
+                                                <i class="fa fa-trash" style="color:black;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>   
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div style="text-align: center">
+                                <h3> No classes have been added. </h3>
+                                <hr class="intro-divider">
+                        {% endif %}
+                        <div class="class-add-btn-row">
+                            <a href="{{ url_for('admin.add_class') }}" class="btn btn-outline-info btn-lg">
+                                <i class="fa fa-plus "></i>
+                                Add Class
+                            </a>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+
 {% endblock content%}
