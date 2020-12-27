@@ -53,15 +53,16 @@ class Employee(UserMixin, db.Model):
     workload = db.Column(db.Integer)
     ph_no = db.Column(db.String(10))
     is_admin = db.Column(db.Boolean, default=False)
+    room_id = db.Column(db.Integer, db.ForeignKey('room.rno'))
 
     subjects = db.relationship('Subject', 
                                 secondary=EmployeeSubject,
                                 backref=db.backref('employees', lazy='dynamic'))
 
-    assist = db.relationship('Room', backref='employee', uselist=False)#1:1 relationship with rooms
+    def __iter__(self):
+        return iter([self.eid])
 
-    
-def __repr__(self):
+    def __repr__(self):
         return f'<Employee: {self.username}, {self.email}>'
 
 
@@ -124,7 +125,7 @@ class Room(db.Model):
     capacity = db.Column(db.Integer, nullable=False)
     no_of_sys = db.Column(db.Integer)
 
-    employee_id = db.Column(db.Integer, db.ForeignKey('employee.eid'))
+    incharge = db.relationship('Employee', backref='rooms', uselist=True)#1:1 relationship with rooms
 
     subjects = db.relationship('Subject',
                                 secondary=RoomSubject,
