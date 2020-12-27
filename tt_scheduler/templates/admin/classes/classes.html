@@ -2,7 +2,7 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/') }}"/>
+    href="{{ url_for('static', filename='') }}"/>
 {% endblock %}
 {%block content%}
     <div class="content-section">
@@ -46,9 +46,9 @@
                                         </td>
                                         <td>
                                             {% if c.rooms %}
-                                                {% for r in c.rooms %}
+                                                <!-- {% for r in c.rooms %} -->
                                                     <li style="list-style-type: none;">{{r.rno}}</li>
-                                                {% endfor %}
+                                                <!-- {% endfor %} -->
                                             {% else %}
                                             <a href="{{url_for('admin.assign_room', id=c.cid)}}">
                                                 <i class="fa fa-plus" style="color: black;"></i>
