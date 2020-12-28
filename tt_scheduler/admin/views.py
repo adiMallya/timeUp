@@ -2,7 +2,7 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required 
 
 from . import admin
-from .forms import SubjectForm, ClassForm, RoomForm, SubjectAssignForm, RoomAssignForm, EmployeeAssignForm
+from .forms import SubjectForm, ClassForm, RoomForm, SubjectAssignForm, RoomAssignForm, EmployeeAssignForm, InchargeAssignForm
 from ..user.forms import EditProfileForm
 from .. import db
 from ..models import Employee, Subject, Class, Room
@@ -141,6 +141,32 @@ def edit_room(id):
     return render_template('admin/rooms/room.html', action="Edit",
                            add_room=add_room, form=form,
                            room=room)
+
+
+@admin.route('/rooms/assign/icharge/<int:id>', methods=['GET', 'POST'])
+@login_required
+def assign_incharge(id):
+    check_admin()
+
+    assign_incharge = True
+
+    room = Room.query.get_or_404(id)
+    
+    form = InchargeAssignForm(obj=room)
+    if form.validate_on_submit():
+        for eid in form.employee.data :
+            room.incharge.append(Employee.query.get(eid))
+
+        db.session.add(room)
+        db.session.commit()
+        flash('You have successfully assigned an incharge')
+
+        return redirect(url_for('admin.list_rooms'))
+    
+    return render_template('admin/rooms/room.html',
+                            assign_incharge=assign_incharge,
+                            room=room,
+                            form=form)
 
 
 @admin.route('/rooms/delete/<int:id>', methods=['GET', 'POST'])

@@ -94,3 +94,8 @@ h1{
 
 /*---NAV ---*/
 
+/*----SUBJECTS---*/
+.subjects-per-row:hover{
+    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+    color: #000;
+}

@@ -13,41 +13,54 @@
                 <div class="card-img-left d-none d-md-flex">
                    <!-- Background image for card set in CSS! -->
                 </div>
-                <div class="card-body bg-dark classes-box">
-                  {% if add_room %}
-                    <h2 class="card-title text-center room-main-heading">Add Room</h2>
+                <div class="card-body">
+                  {% if assign_incharge %}
+                    <h2 class="card-title text-center">Incharge</h2>
+                    <br/>
+                    <form method="POST" action="">                     
+                      {{form.hidden_tag()}}
+                      <div class="form-group">
+                          {{ form.employee.label(class="form-label") }}
+                          {{ form.employee(class="form-control") }}
+                      </div>
+                      <hr> 
+                      <!-- submit button -->
+                      {{ form.submit(class="btn btn-lg btn-outline-secondary text-uppercase font-weight-bold mb-2") }}
+                    </form>
                   {% else %}
-                    <h2 class="card-title text-center">Edit Room</h2>
+                    {% if add_room %}
+                      <h2 class="card-title text-center">Add Room</h2>
+                    {% else %}
+                      <h2 class="card-title text-center">Edit Room</h2>
+                    {% endif %}
+                    <br/>
+                  
+                    <form method="POST" action="">                     
+                      {{form.hidden_tag()}}
+                      <div class="form-group">
+                          {{ form.room.label(class="form-label") }}
+                          {{ form.room(class="form-control") }}
+                      </div>
+          
+                      <div class="form-group">
+                          {{ form.capacity.label(class="form-label") }}
+                          {{ form.capacity(class="form-control") }}
+                      </div>
+
+                      <div class="form-group">
+                          {{ form.is_lab.label(class="form-label") }}
+                          {{ form.is_lab(class="") }}
+                      </div>
+
+                      <div class="form-group">
+                          {{ form.num_sys.label(class="form-label") }}
+                          {{ form.num_sys(class="form-control") }}
+                      </div>
+                      <hr> 
+                      <!-- submit button -->
+                      {{ form.submit(class="btn btn-lg btn-outline-secondary text-uppercase font-weight-bold mb-2") }}
+                    </form>
                   {% endif %}
-                  <br/>
-                 
-                  <form method="POST" action="">                     
-                    {{form.hidden_tag()}}
-                    <div class="form-group row">
-                      <div class="col-2">{{ form.room.label(class="form-label room-heading") }}</div>
-                        <div class=" col-10">  {{ form.room(class="form-control bg-dark text-primary") }}</div>
-                    </div>
-        
-                    <div class="form-group row">
-                      <div class="col-2">{{ form.capacity.label(class="form-label room-heading") }}</div>
-                        <div class=" col-10">  {{ form.capacity(class="form-control bg-dark text-primary") }}</div>
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-2">{{ form.is_lab.label(class="form-label room-heading") }}</div>
-                      <div class=" col-10">  {{ form.is_lab(class="bg-dark text-primary") }}</div>
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-2">{{ form.num_sys.label(class="form-label room-heading") }}</div>
-                        <div class=" col-10">  {{ form.num_sys(class="form-control bg-dark text-primary") }}</div>
-                    </div>
-                    <hr> 
-                    <!-- submit button -->
-                    <div class="class-add-btn-row">
-                      {{ form.submit(class="btn btn-outline-info btn-lg text-uppercase font-weight-bold mb-2") }}
-                    </div>
-                  </form>
                 </div>
               </div>
             </div>

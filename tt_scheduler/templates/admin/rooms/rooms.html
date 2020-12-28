@@ -21,11 +21,12 @@
                                     <tr class="row all-table-heads">
                                     <th class="col-2 all-table-heads"> Room </th>
                                     <th class="col-2 all-table-heads"> Capacity </th>
+                                    <th class="col-2 all-table-heads"> Incharge </th>
                                     <th class="col-2 all-table-heads"> Lab </th>
                                     <!-- <th scope="col"> Subject </th> -->
                                     <th class="col-2 all-table-heads"> Systems </th>
-                                    <th class="col-2 all-table-heads"> Edit </th>
-                                    <th class="col-2 all-table-heads"> Delete </th>
+                                    <th class="col-1 all-table-heads"> Edit </th>
+                                    <th class="col-1 all-table-heads"> Delete </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,6 +34,15 @@
                                     <tr class="row rooms-per-row">
                                         <td class="col-2 column-color"> {{ r.rno }}</td>
                                         <td class="col-2 column-color"> {{ r.capacity }}</td>
+                                        <td class="col-2 column-color"> 
+                                            {% if r.incharge %}
+                                                {{r.incharge}}
+                                            {% else %}
+                                                <a href="{{ url_for('admin.assign_incharge', id=r.rno)}}">
+                                                    <i class="fa fa-plus" style="color: black;"></i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
                                         <td class="col-2 column-color"> 
                                             {% if r.lab %}
                                                 Yes
@@ -47,12 +57,12 @@
                                                 N/A 
                                             {% endif %}
                                         </td>
-                                        <td class="col-2 column-color">
+                                        <td class="col-1 column-color">
                                             <a href="{{ url_for('admin.edit_room', id=r.rno)}}">
                                             <i class="fa fa-edit" style="color:black;"></i>
                                             </a>
                                         </td>
-                                        <td class="col-2 column-color">
+                                        <td class="col-1 column-color">
                                             <a href="{{ url_for('admin.delete_room', id=r.rno)}}">
                                             <i class="fa fa-trash" style="color:black;"></i>
                                             </a>
