@@ -13,7 +13,7 @@
                 <div class="card-img-left d-none d-md-flex">
                    <!-- Background image for card set in CSS! -->
                 </div>
-                <div class="card-body">
+                <div class="card-body bg-dark all-add-edit-box">
                   {% if assign_incharge %}
                     <h2 class="card-title text-center">Incharge</h2>
                     <br/>
@@ -29,36 +29,38 @@
                     </form>
                   {% else %}
                     {% if add_room %}
-                      <h2 class="card-title text-center">Add Room</h2>
+                      <h2 class="card-title text-center room-main-heading">Add Room</h2>
                     {% else %}
-                      <h2 class="card-title text-center">Edit Room</h2>
+                      <h2 class="card-title text-center room-main-heading">Edit Room</h2>
                     {% endif %}
                     <br/>
                   
                     <form method="POST" action="">                     
                       {{form.hidden_tag()}}
-                      <div class="form-group">
-                          {{ form.room.label(class="form-label") }}
-                          {{ form.room(class="form-control") }}
+                      <div class="form-group row all-add-edit-row">
+                        <div class="col-3">  {{ form.room.label(class="form-label room-heading") }}</div>
+                          <div class=" col-9">  {{ form.room(class="form-control bg-dark text-room-color") }}</div>
                       </div>
           
-                      <div class="form-group">
-                          {{ form.capacity.label(class="form-label") }}
-                          {{ form.capacity(class="form-control") }}
+                      <div class="form-group row all-add-edit-row">
+                        <div class="col-3">{{ form.capacity.label(class="form-label room-heading") }}</div>
+                          <div class=" col-9">  {{ form.capacity(class="form-control bg-dark text-room-color") }}</div>
                       </div>
 
-                      <div class="form-group">
-                          {{ form.is_lab.label(class="form-label") }}
-                          {{ form.is_lab(class="") }}
+                      <div class="form-group row all-add-edit-row">
+                        <div class="col-3">{{ form.is_lab.label(class="form-label room-heading") }}</div>
+                          <div class=" col-9">  {{ form.is_lab(class="bg-dark bg-dark text-room-color") }}</div>
                       </div>
 
-                      <div class="form-group">
-                          {{ form.num_sys.label(class="form-label") }}
-                          {{ form.num_sys(class="form-control") }}
+                      <div class="form-group row all-add-edit-row">
+                        <div class="col-3">{{ form.num_sys.label(class="form-label room-heading") }}</div>
+                          <div class=" col-9">  {{ form.num_sys(class="form-control bg-dark text-room-color") }}</div>
                       </div>
                       <hr> 
                       <!-- submit button -->
-                      {{ form.submit(class="btn btn-lg btn-outline-secondary text-uppercase font-weight-bold mb-2") }}
+                      <div class="class-add-btn-row all-add-edit-row"> 
+                          {{ form.submit(class="btn btn-outline-info btn-lg text-uppercase font-weight-bold mb-2") }}
+                      </div>
                     </form>
                   {% endif %}
                 </div>

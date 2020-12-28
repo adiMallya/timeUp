@@ -25,16 +25,16 @@
     margin: 50px auto;
 }
 
-
-.classes-box{
+/*----COMMON CODE CSS TO ADD OR EDIT PAGES --*/
+.all-add-edit-box{
     color: white;
 }
-
-.classes-main-heading{
-    color: #DC3545;
+/*----end----*/
+.class-main-heading{
+    color: #FF5370;
 }
-.classes-heading{
-    color: #DC3545;
+.class-heading{
+    color: #ff869a;
     font-size: 1.2rem;
 }
 
@@ -54,29 +54,29 @@ h1{
 
 /*---SUBJECT--*/
 .subject-heading{
-    color: #d39e00;
+    color: #FFB64D;
     font-size: 1.2rem;
 }
 
 .subject-main-heading{
-    color: #d39e00;
+    color: #ffcb80;
 }
 /*---EOMPLOYEE----*/
 .employees-per-row:hover{
     background: linear-gradient(45deg,#2ed8b6,#59e0c5);
 }
 
-.employee-row{
+.all-add-edit-row{
     margin-bottom: 30px;
 }
 
 .employee-heading{
-    color: #28a745;
+    color: #59e0c5;
     font-size: 1.2rem;
 }
 
 .employee-main-heading{
-    color: #28a745;
+    color: #2ed8b6;
 }
 
 /*---ROOMS---*/
@@ -85,11 +85,11 @@ h1{
 }
 
 .room-heading{
-    color: #007bff;
+    color: #4099ff;
     font-size: 1.2rem;
 }
 .room-main-heading{
-    color: #007bff;
+    color: #73b4ff;
 }
 
 /*---NAV ---*/
@@ -98,4 +98,41 @@ h1{
 .subjects-per-row:hover{
     background: linear-gradient(45deg,#FFB64D,#ffcb80);
     color: #000;
+}
+
+/*---ALL TEXT COLOR----*/
+/*---ROOM---*/
+.text-room-color{
+    color: #73b4ff !important;
+  }
+a.text-room-color, a.text-staff-color{
+    color: #73b4ff !important;
+}
+
+/*----SUBJECT----*/
+.text-subject-color{
+    color: #ffcb80 !important;
+  }
+a.text-subject-color, a.text-subject-color{
+    color: #ffcb80 !important;
+}
+
+/*----CLASS----*/
+.text-class-color{
+    color: #ff869a !important;
+  }
+a.text-class-color, a.text-class-color{
+    color: #ff869a !important;
+}
+
+/*----EMPLOYEE---*/
+.text-employee-color{
+    color: #59e0c5 !important;
+  }
+a.text-employee-color, a.text-employee-color{
+    color: #59e0c5 !important;
+}
+
+#p-specific-in-employee{
+    color: #59e0c5;
 }

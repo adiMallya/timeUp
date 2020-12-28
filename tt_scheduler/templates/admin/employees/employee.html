@@ -16,23 +16,23 @@
         <div class="card-body bg-dark classes-box">
           <h2 class="card-title text-center employee-main-heading">Subjects & Class</h5>
           <br/>
-          <p>
+          <p id="p-specific-in-employee">
               Select a subject and class to assign to
-              <span style="color: #aec251;">
+              <span style="color: #59e0c5;">
                   {{ employee.f_name }} {{ employee.l_name }}
               </span>
           </p>
           <br/>
           <form method="POST" action="">                     
             {{form.hidden_tag()}}
-            <div class="form-label-group row employee-row">
+            <div class="form-label-group row all-add-edit-row">
                 <div class="col-2"> {{ form.subjects.label(class="employee-heading") }}</div>
-                <div class="col-10"> {{ form.subjects(class="form-control bg-dark text-success") }}</div>
+                <div class="col-10"> {{ form.subjects(class="form-control bg-dark text-employee-color") }}</div>
             </div>
 
-            <div class="form-label-group row employee-row">
+            <div class="form-label-group row all-add-edit-row">
                 <div class="col-2"> {{ form.classes.label(class="employee-heading") }}</div>
-                <div class="col-10"> {{ form.classes(class="form-control bg-dark text-success") }}</div>
+                <div class="col-10"> {{ form.classes(class="form-control bg-dark text-employee-color") }}</div>
             </div>
             <hr> 
             <!-- submit button -->

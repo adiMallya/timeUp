@@ -2,7 +2,7 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='') }}"/>
+    href="{{ url_for('static', filename='css/style.css') }}"/>
 {% endblock %}
 {%block content%}
 <div class="row">
@@ -12,7 +12,7 @@
            <!-- Background image for card set in CSS! -->
         </div>
         <div class="card-body bg-dark classes-box">
-          <h2 class="card-title text-center">My Account</h5>
+          <h2 class="card-title text-center text-info">My Account</h5>
           {% with messages =  get_flashed_messages(with_categories=true) %}
           {% if messages %}
               {% for category, message in messages %}
@@ -24,8 +24,8 @@
           {% endwith %}
           <form method="POST" action="">                     
             {{form.hidden_tag()}}
-            <div class="form-label-group">
-                {{ form.username.label(class="") }}
+            <div class="form-label-group row all-add-edit-row">
+               <div class="col-2"> {{ form.username.label(class="text-info") }}</div>
                 {% if form.username.errors %}
                   {{ form.username(class="form-control is-invalid")}}
                   <div class="invalid-form">
@@ -34,12 +34,12 @@
                       {% endfor %}
                   </div>
                 {% else %} 
-                {{ form.username(class="form-control") }}
+               <div class="col-10">{{ form.username(class="form-control bg-dark text-info") }}</div>
                 {% endif %} 
             </div>
 
-            <div class="form-label-group">
-                {{ form.email.label(class="") }}
+            <div class="form-label-group row all-add-edit-row">
+                <div class="col-2"> {{ form.email.label(class="text-info") }}</div>
                 {% if form.email.errors %}
                   {{ form.email(class="form-control is-invalid")}}
                   <div class="invalid-form">
@@ -48,12 +48,12 @@
                       {% endfor %}
                   </div>
                 {% else %} 
-                {{ form.email(class="form-control") }}
+                <div class="col-10">{{ form.email(class="form-control bg-dark text-info") }}</div>
                 {% endif %} 
             </div>
 
-            <div class="form-label-group">
-                {{ form.fname.label(class="") }}
+            <div class="form-label-group row all-add-edit-row">
+                <div class="col-2"> {{ form.fname.label(class="text-info") }}</div>
                 {% if form.fname.errors %}
                   {{ form.fname(class="form-control is-invalid")}}
                   <div class="invalid-form">
@@ -62,17 +62,17 @@
                       {% endfor %}
                   </div>
                 {% else %} 
-                {{ form.fname(class="form-control") }}
+                <div class="col-2"> {{ form.fname(class="form-control bg-dark text-info") }}</div>
                 {% endif %} 
             </div>
 
-            <div class="form-label-group">
-                {{ form.mname.label(class="") }}
-                {{ form.mname(class="form-control") }}
+            <div class="form-label-group row all-add-edit-row">
+                <div class="col-2"> {{ form.mname.label(class="text-info") }}</div>
+                <div class="col-10"> {{ form.mname(class="form-control bg-dark text-info") }}</div>
             </div>
 
-            <div class="form-label-group">
-                {{ form.lname.label(class="") }}
+            <div class="form-label-group row">
+                <div class="col-2"> {{ form.lname.label(class="text-info") }}</div>
                 {% if form.lname.errors %}
                   {{ form.lname(class="form-control is-invalid")}}
                   <div class="invalid-form">
@@ -81,17 +81,17 @@
                       {% endfor %}
                   </div>
                 {% else %} 
-                {{ form.lname(class="form-control") }}
+                <div class="col-10"> {{ form.lname(class="form-control bg-dark text-info") }}</div>
                 {% endif %} 
             </div>
 
-            <div class="form-label-group">
-                {{ form.type.label(class="") }}
-                {{ form.type(class="form-control") }}
+            <div class="form-label-group row all-add-edit-row">
+                <div class="col-2"> {{ form.type.label(class="text-info") }}</div>
+                <div class="col-10"> {{ form.type(class="form-control bg-dark text-info") }}</div>
             </div>
 
-            <div class="form-label-group-small">
-                {{ form.workload.label(class="") }}
+            <div class="form-label-group-small row all-add-edit-row">
+                <div class="col-2"> {{ form.workload.label(class="text-info") }}</div>
                 {% if form.workload.errors %}
                   {{ form.workload(class="form-control is-invalid")}}
                   <div class="invalid-form">
@@ -100,12 +100,12 @@
                       {% endfor %}
                   </div>
                 {% else %} 
-                {{ form.workload(class="form-control",type="number") }}
+                <div class="col-10"> {{ form.workload(class="form-control bg-dark text-info",type="number") }}</div>
                 {% endif %} 
             </div>
 
-            <div class="form-label-group-small">
-                {{ form.phno.label(class="") }}
+            <div class="form-label-group-small row all-add-edit-row">
+                <div class="col-2"> {{ form.phno.label(class="text-info") }}</div>
                 {% if form.phno.errors %}
                   {{ form.phno(class="form-control is-invalid")}}
                   <div class="invalid-form">
@@ -114,14 +114,15 @@
                       {% endfor %}
                   </div>
                 {% else %} 
-                {{ form.phno(class="form-control",type="tel") }}
+                <div class="col-10"> {{ form.phno(class="form-control bg-dark text-info",type="tel") }}</div>
                 {% endif %} 
             </div>
             <hr> 
 
             <!-- submit button -->
-            {{ form.submit(class="btn btn-lg btn-outline-info text-uppercase font-weight-bold mb-2") }}
-           
+            <div class="class-add-btn-row"> 
+                {{ form.submit(class="btn btn-lg btn-outline-info text-uppercase font-weight-bold mb-2") }}
+            </div>
           </form>
         </div>
       </div>

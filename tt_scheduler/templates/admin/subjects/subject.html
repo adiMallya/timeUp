@@ -13,40 +13,40 @@
                 <div class="card-img-left d-none d-md-flex">
                    <!-- Background image for card set in CSS! -->
                 </div>
-                <div class="card-body bg-dark classes-box">
+                <div class="card-body bg-dark all-add-edit-box">
                   {% if add_subject %}
                     <h2 class="card-title text-center subject-main-heading">Add Subject</h2>
                   {% else %}
-                    <h2 class="card-title text-center">Edit Subject</h2>
+                    <h2 class="card-title text-center subject-main-heading">Edit Subject</h2>
                   {% endif %}
                   <br/>
                  
                   <form method="POST" action="">                     
                     {{form.hidden_tag()}}
-                    <div class="form-group row">
+                    <div class="form-group row all-add-edit-row">
                       <div class="col-2">{{ form.name.label(class="form-label subject-heading") }}</div>
-                      <div class=" col-10"> {{ form.name(class="form-control bg-dark text-warning") }}</div>
+                      <div class=" col-10"> {{ form.name(class="form-control bg-dark text-subject-color") }}</div>
                        
                     </div>
         
-                    <div class="form-group row">
+                    <div class="form-group row all-add-edit-row">
                         <div class="col-2"> {{ form.type.label(class="form-label subject-heading") }} </div>
-                        <div class="col-10">  {{ form.type(class="form-control bg-dark text-warning") }}</div>
+                        <div class="col-10">  {{ form.type(class="form-control bg-dark text-subject-color") }}</div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row all-add-edit-row">
                       <div class="col-2">  {{ form.teaching_hrs.label(class="form-label subject-heading") }}</div>
-                       <div class="col-10"> {{ form.teaching_hrs(class="form-control bg-dark text-warning") }}</div>
+                       <div class="col-10"> {{ form.teaching_hrs(class="form-control bg-dark text-subject-color") }}</div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row all-add-edit-row">
                       <div class="col-2">  {{ form.learning_hrs.label(class="form-label subject-heading") }}</div>
-                       <div class="col-10"> {{ form.learning_hrs(class="form-control bg-dark text-warning") }}</div>
+                       <div class="col-10"> {{ form.learning_hrs(class="form-control bg-dark text-subject-color") }}</div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row all-add-edit-row">
                       <div class="col-2">  {{ form.creds.label(class="form-label subject-heading") }}</div>
-                      <div class="col-10">  {{ form.creds(class="form-control bg-dark text-warning") }}</div>
+                      <div class="col-10">  {{ form.creds(class="form-control bg-dark text-subject-color") }}</div>
                     </div>
                     <hr> 
                     <!-- submit button -->
