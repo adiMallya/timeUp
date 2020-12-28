@@ -45,12 +45,13 @@
 
 .nav-special-case {
   
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
  a.text-info:hover {
   color: #fff!important;
   border-bottom: solid 1px #fff;
   margin-left: 5px;
+  transition-duration:.5s ;
 }
 
 
