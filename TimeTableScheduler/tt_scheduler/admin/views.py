@@ -126,6 +126,7 @@ def edit_room(id):
     room = Room.query.get_or_404(id)
     form = RoomForm(obj=room)
     if form.validate_on_submit():
+        room.rno = form.room.data
         room.capacity = form.capacity.data
         room.lab = form.is_lab.data
         room.no_of_sys = form.num_sys.data
@@ -235,6 +236,7 @@ def edit_subject(id):
     form = SubjectForm(obj=subject)
     if form.validate_on_submit():
         subject.sname = form.name.data
+        subject.type = form.type.data
         subject.teach_hrs = form.teaching_hrs.data
         subject.learn_hrs = form.learning_hrs.data
         subject.credits = form.creds.data
@@ -244,6 +246,7 @@ def edit_subject(id):
         return redirect(url_for('admin.list_subjects'))
 
     form.name.data = subject.sname
+    form.type.data = subject.type
     form.teaching_hrs.data = subject.teach_hrs 
     form.learning_hrs.data = subject.learn_hrs
     form.creds.data = subject.credits
