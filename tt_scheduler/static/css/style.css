@@ -44,3 +44,53 @@
     background: linear-gradient(45deg,#FFB64D,#ffcb80);
     color: #000;
 }
+/*---MODIFIED PART---*/
+
+h1{
+    text-align: center; 
+    color: white;
+    margin-top: 20px;
+}
+
+/*---SUBJECT--*/
+.subject-heading{
+    color: #d39e00;
+    font-size: 1.2rem;
+}
+
+.subject-main-heading{
+    color: #d39e00;
+}
+/*---EOMPLOYEE----*/
+.employees-per-row:hover{
+    background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}
+
+.employee-row{
+    margin-bottom: 30px;
+}
+
+.employee-heading{
+    color: #28a745;
+    font-size: 1.2rem;
+}
+
+.employee-main-heading{
+    color: #28a745;
+}
+
+/*---ROOMS---*/
+.rooms-per-row:hover{
+    background: linear-gradient(45deg,#4099ff,#73b4ff);
+}
+
+.room-heading{
+    color: #007bff;
+    font-size: 1.2rem;
+}
+.room-main-heading{
+    color: #007bff;
+}
+
+/*---NAV ---*/
+

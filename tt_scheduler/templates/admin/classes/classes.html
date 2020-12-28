@@ -7,9 +7,9 @@
     
 {% endblock %}
 {%block content%}
-<div class="container-fluid bg-dark">
+<!-- <div class="container-fluid bg-dark">
     <div class="row">
-        <div class="col">
+        <div class="col"> -->
         <div class="content-section">
             <div class="outer">
                 <div class="middle"> 
@@ -23,18 +23,18 @@
                             <div class="table-responsive-lg">
                                 <table class="table table-hover ">
                                     <thead class="thead-dark">
-                                        <tr class="row classes-table-heads">
-                                        <th class="col-2 classes-table-heads" > Class </th>
-                                        <th class="col-2 classes-table-heads" > Strength </th>
-                                        <th class="col-2 classes-table-heads" > Subjects </th>
-                                        <th class="col-2 classes-table-heads"> Room </th>
-                                        <th class="col-2 classes-table-heads"> Edit </th>
-                                        <th class="col-2 classes-table-heads"> Delete </th>
+                                        <tr class="row all-table-heads">
+                                        <th class="col-2 all-table-heads" > Class </th>
+                                        <th class="col-2 all-table-heads" > Strength </th>
+                                        <th class="col-2 all-table-heads" > Subjects </th>
+                                        <th class="col-2 all-table-heads"> Room </th>
+                                        <th class="col-2 all-table-heads"> Edit </th>
+                                        <th class="col-2 all-table-heads"> Delete </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     {% for c in classes %}
-                                        <tr class="row per-row">
+                                        <tr class="row classes-per-row">
                                             <td class="col-2 column-color" > {{ c.cid }}</td>
                                             <td class="col-2 column-color"> {{ c.strength }}</td>
                                             <td class="col-2 column-color"> 
@@ -90,9 +90,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div><!--
     </div>
 </div>
-</div>
+</div>-->
 
 {% endblock content%}

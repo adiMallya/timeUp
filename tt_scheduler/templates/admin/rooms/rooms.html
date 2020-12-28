@@ -2,7 +2,7 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/') }}"/>
+    href="{{ url_for('static', filename='css/style.css') }}"/>
 {% endblock %}
 {%block content%}
     <div class="content-section">
@@ -12,47 +12,47 @@
                     <!-- <br/>
                     
                     <br/> -->
-                    <h1 style="text-align: center;">Rooms</h1>
+                    <h1>Rooms</h1>
                     {% if rooms %}
                         <hr class="intro-divider">
-                        <div class="center table-responsive-lg">
-                            <table class="table table-hover table-bordered">
+                        <div class="table-responsive-lg">
+                            <table class="table table-hover">
                                 <thead class="thead-dark">
-                                    <tr>
-                                    <th scope="col"> Room </th>
-                                    <th scope="col"> Capacity </th>
-                                    <th scope="col"> Lab </th>
+                                    <tr class="row all-table-heads">
+                                    <th class="col-2 all-table-heads"> Room </th>
+                                    <th class="col-2 all-table-heads"> Capacity </th>
+                                    <th class="col-2 all-table-heads"> Lab </th>
                                     <!-- <th scope="col"> Subject </th> -->
-                                    <th scope="col"> Systems </th>
-                                    <th scope="col"> Edit </th>
-                                    <th scope="col"> Delete </th>
+                                    <th class="col-2 all-table-heads"> Systems </th>
+                                    <th class="col-2 all-table-heads"> Edit </th>
+                                    <th class="col-2 all-table-heads"> Delete </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {% for r in rooms %}
-                                    <tr scope="row">
-                                        <td> {{ r.rno }}</td>
-                                        <td> {{ r.capacity }}</td>
-                                        <td> 
+                                    <tr class="row rooms-per-row">
+                                        <td class="col-2 column-color"> {{ r.rno }}</td>
+                                        <td class="col-2 column-color"> {{ r.capacity }}</td>
+                                        <td class="col-2 column-color"> 
                                             {% if r.lab %}
                                                 Yes
                                             {% else %}    
                                                 No
                                             {% endif %}
                                         </td>
-                                        <td>
+                                        <td class="col-2 column-color">
                                             {% if r.lab %}
                                                 {{ r.no_of_sys }}
                                             {% else %}
                                                 N/A 
                                             {% endif %}
                                         </td>
-                                        <td>
+                                        <td class="col-2 column-color">
                                             <a href="{{ url_for('admin.edit_room', id=r.rno)}}">
                                             <i class="fa fa-edit" style="color:black;"></i>
                                             </a>
                                         </td>
-                                        <td>
+                                        <td class="col-2 column-color">
                                             <a href="{{ url_for('admin.delete_room', id=r.rno)}}">
                                             <i class="fa fa-trash" style="color:black;"></i>
                                             </a>
@@ -67,10 +67,12 @@
                             <h3> No rooms have been added. </h3>
                             <hr class="intro-divider">
                     {% endif %}
+                    <div class="class-add-btn-row">
                         <a href="{{ url_for('admin.add_room') }}" class="btn btn-outline-info btn-lg">
                             <i class="fa fa-plus"></i>
                             Add Room
                         </a>
+                    </div>
                     </div>
                 </div>
             </div>
