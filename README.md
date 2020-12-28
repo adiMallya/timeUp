@@ -25,6 +25,7 @@ Inside the `instance/config.py` file paste the below two lines
 ```
     export FLASK_CONFIG=development
     export FLASK_APP=run.py
+    set FLASK_DEBUG=1
     flask run -h localhost -p 5000
 ```
 On Windows, you could use CMD or Anaconda Shell :
@@ -32,6 +33,7 @@ On Windows, you could use CMD or Anaconda Shell :
 ```
     set FLASK_CONFIG=development
     set FLASK_APP=run.py
+    set FLASK_DEBUG=1
     flask run -h localhost -p 5000
 ```
 Point your web browser to http://localhost:5000/
