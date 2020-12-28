@@ -2,7 +2,7 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/') }}"/>
+    href="{{ url_for('static', filename='css/style.css') }}"/>
 {% endblock %}
 {%block content%}
     <div class="content-section">
@@ -15,39 +15,39 @@
                     <h1 style="text-align: center;">Staff</h1>
                     {% if employees %}
                         <hr class="intro-divider">
-                        <div class="center table-responsive-lg">
-                            <table class="table table-hover table-bordered">
+                        <div class="table-responsive-lg">
+                            <table class="table table-hover">
                                 <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Name </th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Phone No.</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Workload (Hrs)</th>
-                                        <th scope="col">Subjects (Class)</th>
-                                        <th scope="col">Assign </th>
+                                    <tr class="row all-table-heads">
+                                        <th class="col-2 all-table-heads">Name </th>
+                                        <th class="col-2 all-table-heads">Email</th>
+                                        <th class="col-2 all-table-heads">Phone No.</th>
+                                        <th class="col-2 all-table-heads">Type</th>
+                                        <th class="col-1 all-table-heads">Workload (Hrs)</th>
+                                        <th class="col-2 all-table-heads">Subjects (Class)</th>
+                                        <th class="col-1 all-table-heads">Assign </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for e in employees %}
                                         {% if e.is_admin %}
-                                            <tr scope="row" class="table-info">
-                                                <td> {{e.f_name}} {{e.l_name}}<i class="fa fa-key"></i></td>
-                                                <td> {{e.email}}</td> 
-                                                <td> {{e.ph_no}}</td>
-                                                <td> {{e.type}}</td>
-                                                <td> {{e.workload}}</td>
-                                                <td> N/A</td>
-                                                <td> N/A</td>
+                                            <tr class="row employees-per-row" class="table-info">
+                                                <td class="col-2 column-color"> {{e.f_name}} {{e.l_name}}<i class="fa fa-key"></i></td>
+                                                <td class="col-2 column-color"> {{e.email}}</td> 
+                                                <td class="col-2 column-color"> {{e.ph_no}}</td>
+                                                <td class="col-2 column-color" > {{e.type}}</td>
+                                                <td class="col-1 column-color"> {{e.workload}}</td>
+                                                <td class="col-2 column-color"> N/A</td>
+                                                <td class="col-1 column-color"> N/A</td>
                                             </tr>
                                         {% else %}
-                                            <tr scope="row">
-                                                <td> {{e.f_name}} {{e.l_name}}</td>
-                                                <td> {{e.email}}</td>
-                                                <td> {{e.ph_no}}</td>
-                                                <td> {{e.type}}</td>
-                                                <td> {{e.workload}}</td>
-                                                <td> 
+                                            <tr class="row employees-per-row">
+                                                <td class="col-2 column-color"> {{e.f_name}} {{e.l_name}}</td>
+                                                <td class="col-2 column-color"> {{e.email}}</td>
+                                                <td class="col-2 column-color"> {{e.ph_no}}</td>
+                                                <td class="col-2 column-color"> {{e.type}}</td>
+                                                <td class="col-1 column-color"> {{e.workload}}</td>
+                                                <td class="col-2 column-color"> 
                                                     {% if e.subjects and e.classes %}
                                                         {% for s,c in zip(e.subjects, e.classes)%}
                                                             <li style="list-style-type: none;">{{s.sname}} ({{c.cid}})</li>
@@ -56,7 +56,7 @@
                                                         
                                                     {% endif %}
                                                 </td>
-                                                <td>
+                                                <td class="col-1 column-color">
                                                     <a href="{{ url_for('admin.assign_employee', id=e.eid) }}">
                                                         <i class="fa fa-plus" style="color: black;"></i>
                                                     </a>

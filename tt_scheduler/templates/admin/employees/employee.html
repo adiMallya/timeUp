@@ -13,8 +13,8 @@
         <div class="card-img-left d-none d-md-flex">
            <!-- Background image for card set in CSS! -->
         </div>
-        <div class="card-body">
-          <h2 class="card-title text-center">Subjects & Class</h5>
+        <div class="card-body bg-dark classes-box">
+          <h2 class="card-title text-center employee-main-heading">Subjects & Class</h5>
           <br/>
           <p>
               Select a subject and class to assign to
@@ -25,18 +25,20 @@
           <br/>
           <form method="POST" action="">                     
             {{form.hidden_tag()}}
-            <div class="form-label-group">
-                {{ form.subjects.label(class="") }}
-                {{ form.subjects(class="form-control") }}
+            <div class="form-label-group row employee-row">
+                <div class="col-2"> {{ form.subjects.label(class="employee-heading") }}</div>
+                <div class="col-10"> {{ form.subjects(class="form-control bg-dark text-success") }}</div>
             </div>
 
-            <div class="form-label-group">
-                {{ form.classes.label(class="") }}
-                {{ form.classes(class="form-control") }}
+            <div class="form-label-group row employee-row">
+                <div class="col-2"> {{ form.classes.label(class="employee-heading") }}</div>
+                <div class="col-10"> {{ form.classes(class="form-control bg-dark text-success") }}</div>
             </div>
             <hr> 
             <!-- submit button -->
-            {{ form.submit(class="btn btn-lg btn-outline-secondary text-uppercase font-weight-bold mb-2") }}
+            <div class="class-add-btn-row">
+              {{ form.submit(class="btn btn-outline-info btn-lg text-uppercase font-weight-bold mb-2") }}
+            </div>
           </form>
         </div>
       </div>

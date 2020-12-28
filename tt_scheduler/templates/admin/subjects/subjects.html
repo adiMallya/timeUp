@@ -2,7 +2,8 @@
 {% block head %}
      <!-- Include components css file here -->
     <link type="text/css"  rel="stylesheet" 
-    href="{{ url_for('static', filename='css/') }}"/>
+    href="{{ url_for('static', filename='css/style.css') }}"/>
+    
 {% endblock %}
 {%block content%}
     <div class="content-section">
@@ -12,36 +13,36 @@
                     <!-- <br/>
                    
                     <br/> -->
-                    <h1 style="text-align: center;">Subjects</h1>
+                    <h1>Subjects</h1>
                     {% if subjects %}
                         <hr class="intro-divider">
-                        <div class="center table-responsive-lg">
-                            <table class="table table-hover table-bordered">
+                        <div class="table-responsive-lg">
+                            <table class="table table-hover">
                                 <thead class="thead-dark">
-                                    <tr>
-                                    <th scope="col"> Name </th>
-                                    <th scope="col"> Type </th>
-                                    <th scope="col"> Teaching Hours </th>
-                                    <th scope="col"> Learning Hours </th>
-                                    <th scope="col"> Credits </th>
-                                    <th scope="col"> Edit </th>
-                                    <th scope="col"> Delete </th>
+                                    <tr class="row all-table-heads">
+                                    <th class="col-2 all-table-heads"> Name </th>
+                                    <th class="col-1 all-table-heads"> Type </th>
+                                    <th class="col-1 all-table-heads"> Teaching Hours </th>
+                                    <th class="col-2 all-table-heads"> Learning Hours </th>
+                                    <th class="col-2 all-table-heads"> Credits </th>
+                                    <th class="col-2 all-table-heads"> Edit </th>
+                                    <th class="col-2 all-table-heads"> Delete </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {% for s in subjects %}
-                                    <tr scope="row">
-                                        <td> {{ s.sname }}</td>
-                                        <td> {{ s.type }}</td>
-                                        <td> {{ s.teach_hrs }}</td>
-                                        <td> {{ s.learn_hrs }}</td>
-                                        <td> {{ s.credits }}</td>
-                                        <td>
+                                    <tr class="row subjects-per-row">
+                                        <td class="col-2 column-color"> {{ s.sname }}</td>
+                                        <td class="col-1 column-color"> {{ s.type }}</td>
+                                        <td class="col-1 column-color"> {{ s.teach_hrs }}</td>
+                                        <td class="col-2 column-color"> {{ s.learn_hrs }}</td>
+                                        <td class="col-2 column-color"> {{ s.credits }}</td>
+                                        <td class="col-2 column-color">
                                             <a href="{{ url_for('admin.edit_subject', id=s.sid) }}">
                                             <i class="fa fa-edit" style="color:black;"></i>
                                             </a>
                                         </td>
-                                        <td>
+                                        <td class="col-2 column-color">
                                             <a href="{{ url_for('admin.delete_subject', id=s.sid) }}">
                                             <i class="fa fa-trash" style="color:black;"></i>
                                             </a>
@@ -56,10 +57,12 @@
                             <h3> No subjects have been added. </h3>
                             <hr class="intro-divider">
                     {% endif %}
+                    <div class="class-add-btn-row">
                         <a href="{{ url_for('admin.add_subject') }}" class="btn btn-outline-info btn-lg">
                             <i class="fa fa-plus"></i>
                             Add Subject
                         </a>
+                    </div>
                     </div>
                 </div>
             </div>
