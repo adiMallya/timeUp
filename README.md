@@ -1,4 +1,9 @@
-# Timetable Scheduler [WIP]
+<h1 align="center">timeUp</h1></br>
+
+<br>
+<p align="center">
+<img width="320px" src="tt_scheduler/static/images/logo-1.png" alt="timeUp logo"></img>
+</p><br>
 
 ## Setting up 
 
