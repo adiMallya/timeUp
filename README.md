@@ -5,6 +5,7 @@
 <img width="320px" src="tt_scheduler/static/images/logo-1.png" alt="timeUp logo"></img>
 </p><br>
 
+
 ## Setting up 
 
 We assume that you have `git` and `pip` installed ([ref](https://packaging.python.org/guides/installing-using-linux-tools/#arch-linux) )
