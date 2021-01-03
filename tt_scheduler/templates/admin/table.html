@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center mb30">
+        <h2>TIMETABLE</h2>
+    </div>
+    {% for mat,class in zip(range(output| length),['3A','3B','3C','5A','5B','5C','7A','7B','7C'])%}
+        <h2 style="text-align: center;">TIMETABLE FOR {{class}}</h2>
+        <table border="5" cellspacing="0" align="center">
+            <tr> 
+                <td align="center" height="50" 
+                    width="100"><br> 
+                    <b>Day/Period</b></br> 
+                </td> 
+                <td align="center" height="50" 
+                    width="100"> 
+                    <b>I<br>8:45-9:45</b> 
+                </td> 
+                <td align="center" height="50" 
+                    width="100"> 
+                    <b>II<br>9:55-10:55</b> 
+                </td> 
+                <td align="center" height="50" 
+                    width="100"> 
+                    <b>III<br>10:55-11:55</b> 
+                </td> 
+                <td align="center" height="50" 
+                    width="100"> 
+                    <b>IV<br>11:55-12:55</b> 
+                </td> 
+                <!-- <td align="center" height="50" 
+                    width="100"> 
+                    <b>12:55-1:30</b> 
+                </td>  -->
+                <td align="center" height="50" 
+                    width="100"> 
+                    <b>V<br>1:30-2:30</b> 
+                </td> 
+                <td align="center" height="50" 
+                    width="100"> 
+                    <b>VI<br>2:30-3:30</b> 
+                </td> 
+                <td align="center" height="50" 
+                    width="100"> 
+                    <b>VII<br>3:30-4:15</b> 
+                </td> 
+            </tr> 
+        {% for key,value in days.items()%}
+            <tr> 
+                <td align="center" height="50"> 
+                <b>{{value}}</b></td> 
+            {% for j in range(7) %}
+                <td align="center" height="50">{{output[mat][key][j]}}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+        </table>
+        <br>
+        <br> 
+    {% endfor %}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+ 
