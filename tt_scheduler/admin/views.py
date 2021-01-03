@@ -6,7 +6,7 @@ from .forms import SubjectForm, ClassForm, RoomForm, SubjectAssignForm, RoomAssi
 from ..user.forms import EditProfileForm
 from .. import db
 from ..models import Employee, Subject, Class, Room
-
+from ..scheduler import Section
 
 
 def check_admin():
@@ -35,6 +35,69 @@ def dashboard():
                             )
 
 
+@admin.route('/dashboard/table')
+@login_required
+def generate():
+    check_admin()
+
+    classes = db.session.query(Class).all()
+    sec_id = [c.cid for c in classes]
+
+    subjects = db.session.query(Subject).select_from(Subject).join(Subject.classes)
+
+    subj_3 = subjects.filter_by(cid='3A').filter(Subject.type.like('C')).filter(~Subject.sname.like('%Lab'))
+    subj_5 = subjects.filter_by(cid='5A').filter(Subject.type.like('C')).filter(~Subject.sname.like('%Lab'))
+    subj_7 = subjects.filter_by(cid='7A').filter(Subject.type.like('C')).filter(~Subject.sname.like('%Lab'))
+
+    sub_list = [[s.sid for s in subj_3],[s.sid for s in subj_5],[s.sid for s in subj_7]]
+    maxsub_count = [[s.teach_hrs for s in subj_3],[s.teach_hrs for s in subj_5],[s.teach_hrs for s in subj_7]]
+    sub_name = [[s.sname for s in subj_3],[s.sname for s in subj_5],[s.sname for s in subj_7]]
+    
+    for i in range(3):
+        sub_list[i].append(50)
+        maxsub_count[i].append(20)
+        sub_name[i].append('Lab')  
+
+        sub_list[i].append(100)
+        maxsub_count[i].append(20)
+        sub_name[i].append('Elec')
+
+    #7th seme
+    sub_list[2].append(200)
+    maxsub_count[2].append(20)
+    sub_name[2].append('Open Elec')
+
+    sec = []
+    j=0
+    
+    for i in range(9): #Calling constructor for each section
+        sec.append(Section(sec_id[i], sub_list[j], maxsub_count[j], sub_name[j]))
+        if i==2 or i==5:
+            j+=1
+
+    for i in range(9):
+        sec[i].lab_allocater()
+
+    for i in [0,3,6]:
+        sec[i].ele(0)
+    
+    for i in range(9):
+        sec[i].ele_allocator(0)
+    
+    sec[6].ele(1)
+    for i in [6,7,8]:
+        sec[i].ele_allocator(1)
+        
+    for i in range(9):
+        sec[i].allocator()
+    
+    output = []
+    for i in range(9):
+        output.append(sec[i].mat_str)
+    
+    days = {0:'Mon',1:'Tue',2:'Wed',3:'Thu',4:'Fri',5:'Sat'}
+
+    return render_template('admin/table.html', output=output, days=days, zip=zip)
 # ------------------------------------------------------------------------------------------------#
 #Employee views
 
