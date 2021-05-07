@@ -22,7 +22,7 @@ We assume that you have `git` and `pip` installed ([ref](https://packaging.pytho
 ```
 3. Create a `timetable-scheduler/instance/config.py` file
 
-Set your app's secret key and database url as environment variables. For example, add the following to `instance/config.py`
+    Set your app's secret key and database url as environment variables. For example, add the following to `instance/config.py`
 ```
     SECRET_KEY = 'something-really-secret'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///example.db'
