@@ -70,6 +70,6 @@ Read more about [Flask-Migrate](https://qxf2.com/blog/database-migration-flask-m
 In your production environment, make sure the environment variable FLASK_CONFIG is set to "production" or FLASK_DEBUG is unset, so that ProductionConfig is used, and set DATABASE_URL as per your production needs.
 
 
-## Note
+## ⚠️ Note
 
 This project was part of an assignment and hence is for learning purposes only.
