@@ -2,13 +2,15 @@
 
 <br>
 <p align="center">
+Finding it hard to manually manage all your schedules ? If your given to setup timetables at your college, why try hard ? :sweat: Lets automate it !:open_mouth: <br>
 <img width="320px" src="tt_scheduler/static/images/logo-1.png" alt="timeUp logo"></img>
+</br> timeUp is your saviour. Just feed in the details and let it time it <em>Up</em> :wink: for you!
 </p><br>
 
 
-## Setting up 
+## Quicksetup :heavy_check_mark:
 
-We assume that you have `git` and `pip` installed ([ref](https://packaging.python.org/guides/installing-using-linux-tools/#arch-linux) )
+We assume that you have `git` and `pip` installed ([ref](https://packaging.python.org/guides/installing-using-linux-tools/#arch-linux))
 
 1. Clone the code repository 
 ```
@@ -18,12 +20,12 @@ We assume that you have `git` and `pip` installed ([ref](https://packaging.pytho
 ```
     pip install -r requirements.txt
 ```
-3. Create a `timetable-scheduler/instance/config.py` file to store keys(this is to be hidden in production/version control)
+3. Create a `timetable-scheduler/instance/config.py` file
 
-Inside the `instance/config.py` file paste the below two lines
+Set your app's secret key and database url as environment variables. For example, add the following to `instance/config.py`
 ```
-    SECRET_KEY = '842266388f2c6e4afc87a51854826973'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
+    SECRET_KEY = 'something-really-secret'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///example.db'
 ```
 
 ## Running the app
@@ -61,3 +63,13 @@ Then each time the database ```models``` change repeat the ```migrate``` and ```
 - To sync the dB in another system just refresh the migrations folder from source control and run the upgrade command.
 
 Read more about [Flask-Migrate](https://qxf2.com/blog/database-migration-flask-migrate/)
+
+
+## Deployment :question:
+
+In your production environment, make sure the environment variable FLASK_CONFIG is set to "production" or FLASK_DEBUG is unset, so that ProductionConfig is used, and set DATABASE_URL as per your production needs.
+
+
+## Note
+
+This project was part of an assignment and hence is for learning purposes only.
